@@ -164,7 +164,7 @@
 	)
 	skill_points = 16
 
-/datum/job/counselor
+/datum/job/standard/counselor
 	title = "Counselor"
 	hud_icon_state = "hudmed"
 	alt_titles = list("Mentalist")
