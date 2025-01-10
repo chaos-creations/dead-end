@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\___compile_options.dm"
 #include "code\___opendream_linting.dm"
 #include "code\__globals.dm"
 #include "code\_macros.dm"
@@ -20,7 +21,6 @@
 #include "code\__datastructures\stack.dm"
 #include "code\__defines\_byond_version_compat.dm"
 #include "code\__defines\_compile_helpers.dm"
-#include "code\__defines\_compile_options.dm"
 #include "code\__defines\_planes+layers.dm"
 #include "code\__defines\_tick.dm"
 #include "code\__defines\admin.dm"

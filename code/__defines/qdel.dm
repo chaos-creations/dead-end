@@ -21,8 +21,12 @@
 #define GC_QUEUE_ITEM_GCD_DESTROYED 3 //! Item's gc_destroyed var value. Used to detect ref reuse.
 #define GC_QUEUE_ITEM_INDEX_COUNT 3 //! Number of item indexes, used for allocating the nested lists. Don't forget to increase this if you add a new queue item index
 
-#define GC_QUEUED_FOR_HARD_DEL -1
-#define GC_CURRENTLY_BEING_QDELETED -2
+// Defines for the time an item has to get its reference cleaned before it fails the queue and moves to the next.
+#define GC_FILTER_QUEUE (1 SECONDS)
+#define GC_CHECK_QUEUE (5 MINUTES)
+#define GC_DEL_QUEUE (10 SECONDS)
+
+#define GC_CURRENTLY_BEING_QDELETED -1
 
 #define QDELING(X) (X.gc_destroyed)
 #define QDELETED(X) (isnull(X) || QDELING(X))
