@@ -44,6 +44,9 @@ var/global/list/flooring_cache = list()
 	var/can_engrave = TRUE
 	var/can_collect = FALSE
 
+	// Not bloody prints, but rather prints on top of the turf (snow, mud)
+	var/print_type
+
 	var/turf_light_range
 	var/turf_light_power
 	var/turf_light_color
@@ -365,8 +368,27 @@ var/global/list/flooring_cache = list()
 /decl/flooring/proc/handle_turf_digging(turf/floor/target)
 	return TRUE
 
+/decl/flooring/proc/turf_exited(turf/target, atom/movable/crosser, atom/new_loc)
+	return print_type && try_place_footprints(crosser, target, target, new_loc, "going")
+
+/decl/flooring/proc/turf_entered(turf/target, atom/movable/crosser, atom/old_loc)
+	return print_type && try_place_footprints(crosser, target, old_loc, target, "coming")
+
+/decl/flooring/proc/try_place_footprints(atom/movable/crosser, turf/target, turf/from_turf, turf/to_turf, use_state = "going")
+	if(!ismob(crosser) || !crosser.simulated || !isturf(from_turf) || !isturf(to_turf))
+		return FALSE
+	var/movement_dir = get_dir(from_turf, to_turf)
+	if(!movement_dir)
+		return FALSE
+	var/mob/walker = crosser
+	var/footprint_icon = walker.get_footprints_icon()
+	if(!footprint_icon)
+		return FALSE
+	var/obj/effect/footprints/prints = (locate() in target) || new print_type(target)
+	prints.add_footprints(crosser, footprint_icon, movement_dir, use_state)
+
 /decl/flooring/proc/turf_crossed(atom/movable/crosser)
 	return
 
-/decl/flooring/proc/can_show_footsteps(turf/target)
+/decl/flooring/proc/can_show_coating_footprints(turf/target)
 	return TRUE

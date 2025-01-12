@@ -818,7 +818,7 @@
 			if(IS_HOE(held) && can_dig_farm(held.material?.hardness))
 				LAZYDISTINCTADD(., /decl/interaction_handler/dig/farm)
 
-/turf/proc/can_show_footsteps()
+/turf/proc/can_show_coating_footprints()
 	return simulated
 
 /decl/interaction_handler/show_turf_contents

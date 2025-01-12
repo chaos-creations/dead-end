@@ -46,6 +46,8 @@
 	antaghud_offset_x    = 16
 	override_organ_types = list(BP_DRAKE_GIZZARD = /obj/item/organ/internal/drake_gizzard)
 	uid                  = "bodytype_drake"
+	footprints_icon      = 'icons/mob/footprints/footprints_paw.dmi'
+
 	additional_emotes    = list(
 		/decl/emote/audible/drake_warble,
 		/decl/emote/audible/drake_purr,

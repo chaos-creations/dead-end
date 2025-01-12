@@ -1585,7 +1585,7 @@ default behaviour is:
 
 /mob/living/proc/handle_walking_tracks(turf/T, old_loc)
 
-	if(!T.can_show_footsteps())
+	if(!T.can_show_coating_footprints())
 		return
 
 	// Tracking blood or other contaminants
