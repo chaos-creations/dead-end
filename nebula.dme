@@ -1483,6 +1483,7 @@
 #include "code\game\objects\structures\showcase.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\skele_stand.dm"
+#include "code\game\objects\structures\snowman.dm"
 #include "code\game\objects\structures\stasis_cage.dm"
 #include "code\game\objects\structures\structure_lock.dm"
 #include "code\game\objects\structures\tables.dm"
