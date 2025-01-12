@@ -35,11 +35,14 @@ var/global/list/flooring_cache = list()
 	/// BYOND ticks.
 	var/build_time = 0
 
+	var/drop_material_on_remove
+
 	var/descriptor
 	var/flooring_flags
 	var/remove_timer = 10
 	var/can_paint
 	var/can_engrave = TRUE
+	var/can_collect = FALSE
 
 	var/turf_light_range
 	var/turf_light_power
@@ -261,14 +264,25 @@ var/global/list/flooring_cache = list()
 		global.flooring_cache[cache_key] = I
 	return global.flooring_cache[cache_key]
 
-/decl/flooring/proc/on_remove()
-	return
+/decl/flooring/proc/on_flooring_remove(turf/removing_from)
+	if(force_material && drop_material_on_remove)
+		force_material.create_object(removing_from, rand(3,5))
 
 /decl/flooring/proc/get_movement_delay(var/travel_dir, var/mob/mover)
 	return movement_delay
 
 /decl/flooring/proc/get_movable_alpha_mask_state(atom/movable/mover)
 	return
+
+/decl/flooring/proc/handle_hand_interaction(turf/floor/floor, mob/user)
+	if(!force_material || !can_collect)
+		return FALSE
+	user.visible_message(SPAN_NOTICE("\The [user] begins scraping together some of \the [name]..."))
+	if(do_after(user, 3 SECONDS, floor) && !QDELETED(floor) && !QDELETED(user) && floor.get_topmost_flooring() == src && isnull(user.get_active_held_item()))
+		var/obj/item/stack/stack = force_material.create_object(floor, 1)
+		user.visible_message(SPAN_NOTICE("\The [user] scrapes together \a [stack]."))
+		stack.add_to_stacks(user, TRUE)
+	return TRUE
 
 /decl/flooring/proc/handle_item_interaction(turf/floor/floor, mob/user, obj/item/item)
 

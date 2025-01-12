@@ -7,6 +7,8 @@
 	footstep_type   = /decl/footsteps/snow
 	has_base_range  = 13
 	force_material  = /decl/material/solid/ice/snow
+	can_collect     = TRUE
+	drop_material_on_remove = TRUE
 
 /decl/flooring/snow/get_movement_delay(var/travel_dir, var/mob/mover)
 	. = ..()

@@ -39,7 +39,7 @@
 	uid = "solid_snow"
 	hardness = MAT_VALUE_MALLEABLE
 	dug_drop_type = /obj/item/stack/material/ore/handful
-	default_solid_form = /obj/item/stack/material/ore/handful
+	default_solid_form = /obj/item/stack/material/lump/large
 	can_backfill_floor_type = /decl/flooring/snow
 
 /decl/material/solid/ice/aspium

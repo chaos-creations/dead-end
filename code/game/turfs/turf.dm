@@ -208,7 +208,10 @@
 		. += (reagents.total_volume > FLUID_SHALLOW) ? 6 : 3
 
 /turf/attack_hand(mob/user)
+
 	SHOULD_CALL_PARENT(FALSE)
+
+	// Find an atom that should be intercepting this click.
 	var/datum/extension/turf_hand/highest_priority_intercept
 	for(var/atom/thing in contents)
 		var/datum/extension/turf_hand/intercept = get_extension(thing, /datum/extension/turf_hand)
@@ -218,6 +221,7 @@
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 		var/atom/intercepting_atom = highest_priority_intercept.holder
 		return intercepting_atom.attack_hand(user)
+
 	return FALSE
 
 /turf/attack_robot(var/mob/user)

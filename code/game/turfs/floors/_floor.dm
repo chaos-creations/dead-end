@@ -138,7 +138,7 @@
 		for(var/obj/effect/decal/writing/W in src)
 			qdel(W)
 
-		_flooring.on_remove()
+		_flooring.on_flooring_remove(src)
 		if(_flooring.build_type && place_product)
 			// If build type uses material stack, check for it
 			// Because material stack uses different arguments
