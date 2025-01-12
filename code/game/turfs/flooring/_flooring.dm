@@ -282,9 +282,10 @@ var/global/list/flooring_cache = list()
 		return FALSE
 	user.visible_message(SPAN_NOTICE("\The [user] begins scraping together some of \the [name]..."))
 	if(do_after(user, 3 SECONDS, floor) && !QDELETED(floor) && !QDELETED(user) && floor.get_topmost_flooring() == src && isnull(user.get_active_held_item()))
-		var/obj/item/stack/stack = force_material.create_object(floor, 1)
-		user.visible_message(SPAN_NOTICE("\The [user] scrapes together \a [stack]."))
-		stack.add_to_stacks(user, TRUE)
+		var/list/created = force_material.create_object(floor, 1)
+		user.visible_message(SPAN_NOTICE("\The [user] scrapes together [english_list(created)]."))
+		for(var/obj/item/stack/stack in created)
+			stack.add_to_stacks(user, TRUE)
 	return TRUE
 
 /decl/flooring/proc/handle_item_interaction(turf/floor/floor, mob/user, obj/item/item)

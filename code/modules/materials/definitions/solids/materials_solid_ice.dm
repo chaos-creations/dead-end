@@ -34,6 +34,7 @@
 	liquid_name = "water"
 	solid_name = "snow"
 	gas_name = "steam"
+	adjective_name = "packed snow"
 	color = COLOR_WHITE
 	codex_name = null
 	uid = "solid_snow"
