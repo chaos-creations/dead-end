@@ -52,36 +52,32 @@
 
 /obj/machinery/space_heater/state_transition(decl/machine_construction/new_state, mob/user)
 	. = ..()
-	if(istype(new_state, /decl/machine_construction/default/panel_open) && CanInteract(user, DefaultTopicState()))
-		interact(user)
+	if(istype(new_state, /decl/machine_construction/default/panel_closed) || !CanInteract(user, DefaultTopicState()))
+		SSnano.close_uis(src)
+	else if(istype(new_state, /decl/machine_construction/default/panel_open))
+		SSnano.update_uis(src)
 
 /obj/machinery/space_heater/interface_interact(mob/user)
 	if(panel_open)
 		interact(user)
 		return TRUE
 
-/obj/machinery/space_heater/interact(mob/user)
-	if(panel_open)
-		var/list/dat = list()
-		var/obj/item/cell/cell = get_cell()
-		dat += "Power cell: "
-		if(cell)
-			dat += "Installed<BR>"
-		else
-			dat += "Removed<BR>"
-
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
-
-		dat += "Set Temperature: "
-
-		dat += "<A href='byond://?src=\ref[src];op=temp;val=-5'>-</A>"
-
-		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A><BR>"
-
-		var/datum/browser/popup = new(user, "spaceheater", "Space Heater Control Panel")
-		popup.set_content(jointext(dat, null))
-		popup.open()
+/obj/machinery/space_heater/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = global.physical_no_access_topic_state)
+	if(!panel_open)
+		SSnano.close_uis(src) // should be handled in state_transition, but just in case
+		return
+	var/obj/item/cell/cell = get_cell()
+	var/list/data = list(
+		"has_cell" = !!cell,
+		"cell_percent" = cell?.percent(),
+		"set_temperature" = set_temperature,
+	)
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "space_heater.tmpl", "Space Heater Control Panel")
+		ui.set_initial_data(data)
+		ui.open()
 
 /obj/machinery/space_heater/physical_attack_hand(mob/user)
 	if(!panel_open)
@@ -95,13 +91,6 @@
 		return TRUE
 	return FALSE
 
-// This can't be converted to an OnTopic override, it actually handles the return value from them.
-/obj/machinery/space_heater/Topic(href, href_list, state)
-	. = ..()
-	if(. == TOPIC_CLOSE)
-		SSnano.close_user_uis(usr, src)
-		usr.unset_machine()
-
 // This machine has physical, mechanical buttons.
 /obj/machinery/space_heater/DefaultTopicState()
 	return global.physical_topic_state
@@ -109,13 +98,10 @@
 /obj/machinery/space_heater/OnTopic(mob/user, href_list, state)
 	if ((. = ..()))
 		return
-
-	switch(href_list["op"])
-		if("temp")
-			var/value = text2num(href_list["val"])
-
-			// limit to 0-90 degC
-			set_temperature = clamp(set_temperature + value, T0C, T0C + 90)
+	if(href_list["adj_temp"])
+		var/old_temperature = set_temperature
+		set_temperature = clamp(round(set_temperature + text2num(href_list["adj_temp"])), T0C, 90 CELSIUS) // 90C is pretty damn hot but okay
+		if(old_temperature != set_temperature)
 			. = TOPIC_REFRESH
 
 /obj/machinery/space_heater/power_change()

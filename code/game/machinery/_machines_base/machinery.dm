@@ -257,6 +257,7 @@ Class Procs:
 	. = ..()
 	if(. == TOPIC_REFRESH)
 		updateUsrDialog() // Update legacy UIs to the extent possible.
+		queue_icon_update() // A lot of machines like to do icon updates on refresh, so we'll handle it for them here.
 
 /obj/machinery/proc/get_tool_manipulation_info()
 	return construct_state?.mechanics_info()
