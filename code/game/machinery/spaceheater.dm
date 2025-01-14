@@ -86,16 +86,29 @@
 /obj/machinery/space_heater/physical_attack_hand(mob/user)
 	if(!panel_open)
 		on = !on
-		user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] \the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
+		user.visible_message(
+			SPAN_NOTICE("[user] switches [on ? "on" : "off"] \the [src]."),
+			SPAN_NOTICE("You switch [on ? "on" : "off"] \the [src]."),
+			SPAN_NOTICE("You hear a [on ? "machine rumble to life" : "rumbling machine go silent"].")
+		)
 		update_icon()
 		return TRUE
 	return FALSE
 
-/obj/machinery/space_heater/Topic(href, href_list, state = global.physical_topic_state)
-	if (..())
-		show_browser(usr, null, "window=spaceheater")
+// This can't be converted to an OnTopic override, it actually handles the return value from them.
+/obj/machinery/space_heater/Topic(href, href_list, state)
+	. = ..()
+	if(. == TOPIC_CLOSE)
+		SSnano.close_user_uis(usr, src)
 		usr.unset_machine()
-		return 1
+
+// This machine has physical, mechanical buttons.
+/obj/machinery/space_heater/DefaultTopicState()
+	return global.physical_topic_state
+
+/obj/machinery/space_heater/OnTopic(mob/user, href_list, state)
+	if ((. = ..()))
+		return
 
 	switch(href_list["op"])
 		if("temp")
@@ -103,8 +116,7 @@
 
 			// limit to 0-90 degC
 			set_temperature = clamp(set_temperature + value, T0C, T0C + 90)
-
-	updateDialog()
+			. = TOPIC_REFRESH
 
 /obj/machinery/space_heater/power_change()
 	. = ..()
