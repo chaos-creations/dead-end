@@ -269,7 +269,7 @@
 	if(next_intent && move_intent != next_intent && next_intent.can_be_used_by(src))
 		move_intent = next_intent
 		if(istype(hud_used) && hud_used.move_intent)
-			hud_used.move_intent.icon_state = move_intent.hud_icon_state
+			hud_used.move_intent.update_icon()
 		return TRUE
 	return FALSE
 

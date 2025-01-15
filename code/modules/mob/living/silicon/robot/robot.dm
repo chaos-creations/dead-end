@@ -832,8 +832,7 @@
 			module.handle_turf(loc, src)
 
 		if(client)
-			var/turf/above = GetAbove(src)
-			up_hint.icon_state = "uphint[!!(above && TURF_IS_MIMICKING(above))]"
+			up_hint.update_icon()
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
 	disconnect_from_ai()
