@@ -114,9 +114,6 @@
 
 	data["automation"] = automation
 
-/obj/machinery/computer/air_control/Process()
-	..()
-
 /obj/machinery/computer/air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption)
 		return
