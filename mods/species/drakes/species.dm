@@ -43,6 +43,7 @@
 	traits = list(
 		/decl/trait/sivian_biochemistry = TRAIT_LEVEL_EXISTS
 	)
+	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
 	// Drakes must be whitelisted for jobs to be able to join as them, see maps.dm.
 	job_blacklist_by_default = TRUE

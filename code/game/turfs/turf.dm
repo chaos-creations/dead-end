@@ -208,7 +208,10 @@
 		. += (reagents.total_volume > FLUID_SHALLOW) ? 6 : 3
 
 /turf/attack_hand(mob/user)
+
 	SHOULD_CALL_PARENT(FALSE)
+
+	// Find an atom that should be intercepting this click.
 	var/datum/extension/turf_hand/highest_priority_intercept
 	for(var/atom/thing in contents)
 		var/datum/extension/turf_hand/intercept = get_extension(thing, /datum/extension/turf_hand)
@@ -218,6 +221,7 @@
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 		var/atom/intercepting_atom = highest_priority_intercept.holder
 		return intercepting_atom.attack_hand(user)
+
 	return FALSE
 
 /turf/attack_robot(var/mob/user)
@@ -810,7 +814,7 @@
 	if(IS_HOE(held) && can_dig_farm(held.material?.hardness))
 		LAZYADD(., /decl/interaction_handler/dig/farm)
 
-/turf/proc/can_show_footsteps()
+/turf/proc/can_show_coating_footprints()
 	return simulated
 
 /decl/interaction_handler/show_turf_contents
