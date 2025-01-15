@@ -27,6 +27,8 @@
 
 /obj/item/chems/on_update_icon()
 	. = ..()
+	if(detail_state)
+		add_overlay(overlay_image(icon, "[initial(icon_state)][detail_state]", detail_color || COLOR_WHITE, RESET_COLOR))
 	var/image/contents_overlay = get_reagents_overlay(use_single_icon ? icon_state : null)
 	if(contents_overlay)
 		add_overlay(contents_overlay)

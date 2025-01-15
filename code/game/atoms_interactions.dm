@@ -21,6 +21,15 @@ var/global/list/_reagent_interactions = list(
 	return null
 
 /**
+	Get a default interaction for a user from this atom.
+
+	- `user`: The mob that this interaction is for
+	- Return: A default interaction decl, or null.
+*/
+/atom/proc/get_quick_interaction_handler(mob/user)
+	return
+
+/**
 	Get a list of alt interactions (alt-click) for a user from this atom.
 
 	- `user`: The mob that these alt interactions are for
