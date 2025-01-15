@@ -31,6 +31,7 @@
 	ambience = list()
 
 /area/fantasy/outside
+	name = "\improper Wilderness"
 	abstract_type = /area/fantasy/outside
 	color = COLOR_GREEN
 	is_outside = OUTSIDE_YES

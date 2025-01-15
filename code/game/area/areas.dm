@@ -94,7 +94,7 @@ var/global/list/areas = list()
 	..()
 
 /area/Initialize()
-	if(additional_fishing_results)
+	if(LAZYLEN(additional_fishing_results))
 		LAZYINITLIST(fishing_results)
 		for(var/fish in additional_fishing_results)
 			fishing_results[fish] = additional_fishing_results[fish]
