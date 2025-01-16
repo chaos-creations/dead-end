@@ -41,7 +41,7 @@
 	else
 		visible_message("<span class='warning'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 
-	var/damage = W.get_attack_force(user) / 4
+	var/damage = W.expend_attack_force(user) / 4
 
 	if(W.has_edge())
 		damage += 5

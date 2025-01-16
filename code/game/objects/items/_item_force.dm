@@ -13,27 +13,32 @@
 	VAR_PROTECTED/_hardness_force_factor    = 0.25
 
 /obj/item/proc/get_max_weapon_force()
-	. = get_attack_force(dry_run = TRUE)
+	. = get_attack_force()
 	if(can_be_twohanded)
 		. = round(. * _wielded_force_multiplier)
 
-// `dry_run` param is used for things like the grindstone modpack to avoid
-// depleting sharpness when not actually being used to attack.
-/obj/item/proc/get_attack_force(mob/living/user, dry_run = FALSE)
+/obj/item/proc/expend_attack_force(mob/living/user)
+	. = get_attack_force(user)
+	var/list/item_effects = get_item_effects(IE_CAT_DAMAGE)
+	if(length(item_effects))
+		for(var/decl/item_effect/damage_effect as anything in item_effects)
+			. = damage_effect.expend_attack_use(src, user, item_effects[damage_effect])
+
+/obj/item/proc/get_attack_force(mob/living/user)
 	if(_base_attack_force <= 0 || (item_flags & ITEM_FLAG_NO_BLUDGEON))
 		return 0
 	if(isnull(_cached_attack_force))
 		update_attack_force()
 	if(_cached_attack_force <= 0)
 		return 0
-	return istype(user) ? user.modify_attack_force(src, _cached_attack_force, _wielded_force_multiplier, dry_run) : _cached_attack_force
+	return istype(user) ? user.modify_attack_force(src, _cached_attack_force, _wielded_force_multiplier) : _cached_attack_force
 
 // Existing hitby() code expects mobs, structures and machines to be thrown, it seems.
 /atom/movable/proc/get_thrown_attack_force()
 	return get_object_size()
 
 /obj/item/get_thrown_attack_force()
-	return round(get_attack_force() * _thrown_force_multiplier)
+	return round(expend_attack_force() * _thrown_force_multiplier)
 
 /obj/item/proc/get_base_attack_force()
 	return _base_attack_force
@@ -99,7 +104,7 @@
 
 // TODO: consider strength, athletics, mob size
 // `dry_run` param used in grindstone modpack to avoid depleting sharpness on non-attacks.
-/mob/living/proc/modify_attack_force(obj/item/weapon, supplied_force, wield_mult, dry_run)
+/mob/living/proc/modify_attack_force(obj/item/weapon, supplied_force, wield_mult)
 	if(!istype(weapon) || !weapon.is_held_twohanded())
 		. = supplied_force
 	else
@@ -107,7 +112,7 @@
 	var/list/item_effects = weapon.get_item_effects(IE_CAT_DAMAGE)
 	if(length(item_effects))
 		for(var/decl/item_effect/damage_effect as anything in item_effects)
-			. = damage_effect.modify_attack_damage(., weapon, src, dry_run, item_effects[damage_effect])
+			. = damage_effect.modify_attack_damage(., weapon, src, item_effects[damage_effect])
 	return round(.)
 
 // Debug proc - leaving in for future work. Linter hates protected var access so leave commented.
@@ -139,7 +144,7 @@
 
 		item = new item
 
-		var/attk_force = item.get_attack_force()
+		var/attk_force = item.expend_attack_force()
 		var/expected_material_mod = ((attk_force * item._weight_force_factor) + (attk_force * item._hardness_force_factor))/2
 
 		rows += jointext(list(

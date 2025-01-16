@@ -71,3 +71,6 @@
 
 /decl/item_effect/proc/modify_attack_damage(base_damage, obj/item/used_item, mob/user, dry_run, list/parameters)
 	return base_damage
+
+/decl/item_effect/proc/expend_attack_use(obj/item/used_item, mob/user, dry_run, list/parameters)
+	return

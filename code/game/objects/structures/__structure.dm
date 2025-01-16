@@ -250,7 +250,7 @@
 					SPAN_DANGER("\The [S] slices into [victim]'s face!"),
 					SPAN_DANGER("\The [S] slices into your face!")
 				)
-				victim.standard_weapon_hit_effects(S, user, S.get_attack_force()*2, BP_HEAD)
+				victim.standard_weapon_hit_effects(S, user, S.expend_attack_force()*2, BP_HEAD)
 		qdel(grab)
 	else if(atom_flags & ATOM_FLAG_CLIMBABLE)
 		var/obj/occupied = turf_is_crowded()

@@ -264,7 +264,7 @@
 
 	else if(lightbulb && (lightbulb.status != LIGHT_BROKEN) && !user.check_intent(I_FLAG_HELP))
 
-		if(prob(1 + W.get_attack_force(user) * 5))
+		if(prob(1 + W.expend_attack_force(user) * 5))
 
 			user.visible_message("<span class='warning'>[user.name] smashed the light!</span>", "<span class='warning'>You smash the light!</span>", "You hear a tinkle of breaking glass.")
 			if(on && (W.obj_flags & OBJ_FLAG_CONDUCTIBLE))

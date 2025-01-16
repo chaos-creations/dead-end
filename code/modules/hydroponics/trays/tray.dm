@@ -499,7 +499,7 @@
 		return TRUE
 
 	if(seed)
-		var/force = used_item.get_attack_force(user)
+		var/force = used_item.expend_attack_force(user)
 		if(force)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message("<span class='danger'>\The [seed.display_name] has been attacked by [user] with \the [used_item]!</span>")

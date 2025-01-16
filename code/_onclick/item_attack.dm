@@ -92,7 +92,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	var/oldhealth = current_health
 	. = used_item.use_on_mob(src, user)
-	if(used_item.get_attack_force(user, dry_run = TRUE) && istype(ai) && current_health < oldhealth)
+	if(used_item.get_attack_force(user) && istype(ai) && current_health < oldhealth)
 		ai.retaliate(user)
 
 	if(!. && user == src && user.get_target_zone() == BP_MOUTH && can_devour(used_item, silent = TRUE))
@@ -175,7 +175,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		else
 			use_hitsound = "swing_hit"
 	playsound(loc, use_hitsound, 50, 1, -1)
-	return target.hit_with_weapon(src, user, get_attack_force(user), hit_zone)
+	return target.hit_with_weapon(src, user, expend_attack_force(user), hit_zone)
 
 /obj/item/proc/handle_reflexive_fire(var/mob/user, var/atom/aiming_at)
 	return istype(user) && istype(aiming_at)

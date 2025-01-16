@@ -113,7 +113,7 @@
 
 /obj/structure/net/attackby(obj/item/W, mob/user)
 	if(W.is_sharp() || W.has_edge())
-		var/force = W.get_attack_force(user)
+		var/force = W.expend_attack_force(user)
 		if (!(W.is_sharp()) || (W.is_sharp() && force < 10))//is not sharp enough or at all
 			to_chat(user,"<span class='warning'>You can't cut through \the [src] with \the [W], it's too dull.</span>")
 			return TRUE

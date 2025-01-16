@@ -132,7 +132,7 @@
 					qdel(WR)
 				return TRUE
 		else
-			var/force = W.get_attack_force(user)
+			var/force = W.expend_attack_force(user)
 			if((!W.is_sharp() && !W.has_edge() && force >= 10) || force >= 20)
 				to_chat(user, "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>")
 				physically_destroyed()
@@ -297,7 +297,7 @@
 		return TRUE
 
 	// Attack the wall with items
-	var/force = W.get_attack_force(user)
+	var/force = W.expend_attack_force(user)
 	if(istype(W,/obj/item/rcd) || istype(W, /obj/item/chems) || !force || user.check_intent(I_FLAG_HELP))
 		return ..()
 
