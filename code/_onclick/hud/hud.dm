@@ -202,7 +202,7 @@
 			qdel(inv_box)
 
 	// Rebuild offsets for the hand elements.
-	var/hand_y_offset = 5
+	var/hand_y_offset = 21
 	var/list/elements = hand_hud_objects?.Copy()
 	while(length(elements))
 		var/copy_index = min(length(elements), 2)+1
