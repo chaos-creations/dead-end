@@ -4,6 +4,8 @@
 		#include "../../code/unit_tests/offset_tests.dm"
 	#endif
 
+	#include "../../mods/content/tabloids/_tabloids.dme"
+
 	#include "../random_ruins/exoplanet_ruins/playablecolony/playablecolony.dm"
 
 	#include "../../mods/content/government/away_sites/icarus/icarus.dm"

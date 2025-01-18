@@ -43,6 +43,7 @@ Twice...
 	#include "../../mods/mobs/dionaea/_dionaea.dme"
 	#include "../../mods/mobs/borers/_borers.dme"
 
+	#include "../../mods/content/tabloids/_tabloids.dme"
 	#include "../../mods/species/ascent/_ascent.dme"
 	#include "../../mods/species/bayliens/_bayliens.dme"
 	#include "../../mods/species/neoavians/_neoavians.dme"
