@@ -88,6 +88,9 @@
 	return TRUE
 
 /obj/screen/Click(location, control, params)
+	var/list/paramlist = params2list(params)
+	if(paramlist["shift"])
+		return examine(usr, 0)
 	if(ismob(usr) && usr.client && usr.canClick() && (!user_incapacitation_flags || !usr.incapacitated(user_incapacitation_flags)))
 		return handle_click(usr, params)
 	return FALSE
