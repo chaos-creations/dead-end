@@ -1065,8 +1065,7 @@
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	flick("blspell", animation)
-	sleep(5)
-	qdel(animation)
+	QDEL_IN(animation, 0.5 SECONDS)
 
 /mob/living/silicon/robot/proc/handle_radio_transmission()
 	if(!is_component_functioning("radio"))

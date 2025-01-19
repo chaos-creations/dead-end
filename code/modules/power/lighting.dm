@@ -612,19 +612,22 @@
 /obj/item/light/proc/switch_on()
 	switchcount++
 	if(rigged)
-		log_and_message_admins("Rigged light explosion, last touched by [fingerprintslast]")
-		var/turf/T = get_turf(src.loc)
-		spawn(0)
-			sleep(2)
-			explosion(T, 0, 0, 3, 5)
-			sleep(1)
-			qdel(src)
+		addtimer(CALLBACK(src, PROC_REF(do_rigged_explosion)), 0.2 SECONDS)
 		status = LIGHT_BROKEN
 	else if(prob(min(60, switchcount*switchcount*0.01)))
 		status = LIGHT_BURNED
 	else if(sound_on)
 		playsound(src, sound_on, 75)
 	return status
+
+/obj/item/light/proc/do_rigged_explosion()
+	if(!rigged)
+		return
+	log_and_message_admins("Rigged light explosion, last touched by [fingerprintslast]")
+	var/turf/T = get_turf(src)
+	explosion(T, 0, 0, 3, 5)
+	if(!QDELETED(src))
+		QDEL_IN(src, 1)
 
 /obj/machinery/light/do_simple_ranged_interaction(var/mob/user)
 	if(lightbulb)

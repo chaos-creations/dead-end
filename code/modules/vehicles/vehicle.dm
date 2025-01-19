@@ -144,23 +144,17 @@
 		healthcheck()
 
 /obj/vehicle/emp_act(severity)
-	var/was_on = on
+	addtimer(CALLBACK(src, PROC_REF(end_emp), on), severity * 30 SECONDS)
 	stat |= EMPED
-	var/obj/effect/overlay/pulse2 = new /obj/effect/overlay(loc)
-	pulse2.icon = 'icons/effects/effects.dmi'
-	pulse2.icon_state = "empdisable"
-	pulse2.SetName("emp sparks")
-	pulse2.anchored = TRUE
-	pulse2.set_dir(pick(global.cardinal))
-
-	spawn(10)
-		qdel(pulse2)
+	var/obj/effect/temp_visual/emp_burst/burst = new /obj/effect/temp_visual/emp_burst(loc)
+	burst.set_dir(pick(global.cardinal))
 	if(on)
 		turn_off()
-	spawn(severity*300)
-		stat &= ~EMPED
-		if(was_on)
-			turn_on()
+
+/obj/vehicle/proc/end_emp(was_on)
+	stat &= ~EMPED
+	if(was_on)
+		turn_on()
 
 /obj/vehicle/attack_ai(mob/living/silicon/ai/user)
 	return
