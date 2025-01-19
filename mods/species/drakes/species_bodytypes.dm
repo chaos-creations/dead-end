@@ -39,7 +39,7 @@
 		BP_TAIL   = /obj/item/organ/external/tail/grafadreka,
 		BP_L_HAND = /obj/item/organ/external/hand/quadruped/grafadreka,
 		BP_R_HAND = /obj/item/organ/external/hand/right/quadruped/grafadreka,
-		BP_HEAD   = /obj/item/organ/external/head/grafadreka
+		BP_HEAD   = /obj/item/organ/external/head/gripper/grafadreka
 	)
 	base_color           = "#608894"
 	base_eye_color       = COLOR_SILVER
@@ -203,9 +203,14 @@
 		/datum/ability_handler/predator/grafadreka/hatchling
 	)
 	z_flags             = 0
+	// TODO: weaker attack subtypes for the baby
 	override_limb_types = list(
-		BP_TAIL = /obj/item/organ/external/tail/grafadreka/hatchling
+		BP_TAIL   = /obj/item/organ/external/tail/grafadreka/hatchling,
+		BP_L_HAND = /obj/item/organ/external/hand/quadruped/grafadreka,
+		BP_R_HAND = /obj/item/organ/external/hand/right/quadruped/grafadreka,
+		BP_HEAD   = /obj/item/organ/external/head/gripper/grafadreka
 	)
+
 	default_emotes      = list(
 		/decl/emote/audible/drake_hatchling_growl,
 		/decl/emote/audible/drake_hatchling_whine,
@@ -344,6 +349,6 @@
 	override_material = /decl/material/solid/organic/bone
 	. = ..()
 
-/obj/item/organ/external/head/grafadreka/get_natural_attacks()
+/obj/item/organ/external/head/gripper/grafadreka/get_natural_attacks()
 	var/static/unarmed_attack = GET_DECL(/decl/natural_attack/bite/sharp/drake)
 	return unarmed_attack
