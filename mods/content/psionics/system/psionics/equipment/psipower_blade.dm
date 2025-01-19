@@ -1,8 +1,8 @@
 /obj/item/ability/psionic/psiblade
 	name = "psychokinetic slash"
 	_base_attack_force = 10
-	_sharp = TRUE
-	_edge = TRUE
+	sharp = TRUE
+	edge = TRUE
 	maintain_cost = 1
 	icon_state = "psiblade_short"
 

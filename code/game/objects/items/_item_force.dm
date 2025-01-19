@@ -61,14 +61,14 @@
 	// Check if this material is hard enough to hold an edge.
 	if(!material.can_hold_edge())
 		set_edge(FALSE)
-	else if(!_edge)
-		set_edge(initial(_edge))
+	else if(!edge)
+		set_edge(initial(edge))
 
 	// Check if this material can hold a point.
 	if(!material.can_hold_sharpness())
 		set_sharp(FALSE)
-	else if(!_sharp)
-		set_sharp(initial(_sharp))
+	else if(!sharp)
+		set_sharp(initial(sharp))
 
 	// Work out where we're going to cap our calculated force.
 	// Any additional force resulting from hardness or weight turn into armour penetration.
@@ -157,7 +157,7 @@
 			(attk_force + expected_material_mod),
 			(attk_force * item._wielded_force_multiplier),
 			item.armor_penetration,
-			(item._sharp|item._edge)
+			(item.sharp|item.edge)
 		), "|")
 
 	text2file(jointext(rows, "\n"), "weapon_stats_dump.csv")

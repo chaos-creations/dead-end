@@ -42,7 +42,7 @@
 			playsound(loc, 'sound/foley/knife1.ogg', 50)
 			user.visible_message("\The [user] sharpens \the [src] with \the [sharpening_with].")
 	else
-		to_chat(user, SPAN_WARNING("\The [src] cannot be [initial(_sharp) ? "further sharpened" : "sharpened"] with \the [sharpening_with]."))
+		to_chat(user, SPAN_WARNING("\The [src] cannot be [initial(sharp) ? "further sharpened" : "sharpened"] with \the [sharpening_with]."))
 	return TRUE
 
 // We don't override sharp because it's probably still pointy even if it isn't sharpened.

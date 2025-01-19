@@ -228,7 +228,7 @@
 	throw_range = 5
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
-	_sharp = TRUE
+	sharp = TRUE
 	obj_flags = OBJ_FLAG_HOLLOW
 	material = /decl/material/solid/glass
 	_base_attack_force = 9

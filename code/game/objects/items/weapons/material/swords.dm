@@ -7,8 +7,8 @@
 	w_class = ITEM_SIZE_LARGE
 	item_flags = ITEM_FLAG_IS_WEAPON
 	armor_penetration = 10
-	_sharp = TRUE
-	_edge = TRUE
+	sharp = TRUE
+	edge = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	base_parry_chance = 50

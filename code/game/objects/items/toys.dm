@@ -144,8 +144,8 @@
 /obj/item/energy_blade/sword/toy
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	_sharp = FALSE
-	_edge = FALSE
+	sharp = FALSE
+	edge = FALSE
 	attack_verb = list("hit")
 	material = /decl/material/solid/organic/plastic
 	active_hitsound = 'sound/weapons/genhit.ogg'
@@ -497,8 +497,8 @@
 	desc = "An arcane weapon (made of foam) wielded by the followers of the hit Saturday morning cartoon \"King Nursee and the Acolytes of Heroism\"."
 	icon = 'icons/obj/items/weapon/swords/cult.dmi'
 	material = /decl/material/solid/organic/plastic/foam
-	_edge = FALSE
-	_sharp = FALSE
+	edge = FALSE
+	sharp = FALSE
 
 /obj/item/inflatable_duck //#TODO: Move under obj/item/toy ?
 	name = "inflatable duck"

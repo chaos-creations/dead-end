@@ -3,8 +3,8 @@
 	desc                = "The secret is to bang the rocks together, guys."
 	icon                = 'icons/obj/items/rock.dmi'
 	icon_state          = ICON_STATE_WORLD
-	_sharp              = TRUE
-	_edge               = TRUE
+	sharp              = TRUE
+	edge               = TRUE
 	_base_attack_force  = 3
 	material_alteration = MAT_FLAG_ALTERATION_COLOR | MAT_FLAG_ALTERATION_NAME
 	w_class             = ITEM_SIZE_SMALL
@@ -49,6 +49,6 @@
 	name    = "striker"
 	desc    = "A squared-off, rather worn-down piece of stone."
 	icon    = 'icons/obj/items/striker.dmi'
-	_sharp  = FALSE
-	_edge   = FALSE
+	sharp  = FALSE
+	edge   = FALSE
 	w_class = ITEM_SIZE_TINY

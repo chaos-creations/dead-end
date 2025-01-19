@@ -103,8 +103,8 @@
 	else
 
 		obj_flags &= ~OBJ_FLAG_NO_STORAGE
-		set_sharp(initial(_sharp))
-		set_edge(initial(_edge))
+		set_sharp(initial(sharp))
+		set_edge(initial(edge))
 		base_parry_chance = initial(base_parry_chance)
 		armor_penetration = initial(armor_penetration)
 		hitsound =          initial(hitsound)

@@ -41,7 +41,7 @@
 		to_chat(user, "<span class='notice'>You remove [syringe] from [src].</span>")
 		user.put_in_hands(syringe)
 		syringe = null
-		set_sharp(initial(_sharp))
+		set_sharp(initial(sharp))
 		SetName(initial(name))
 		update_icon()
 

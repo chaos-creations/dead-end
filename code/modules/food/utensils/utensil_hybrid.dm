@@ -11,8 +11,8 @@
 	name          = "foon"
 	desc          = "It's a foon. It's much like a spoon, but much sharper."
 	icon          = 'icons/obj/food/utensils/foon.dmi'
-	_sharp        = TRUE
-	_edge         = TRUE
+	sharp        = TRUE
+	edge         = TRUE
 	utensil_flags = UTENSIL_FLAG_SLICE | UTENSIL_FLAG_SCOOP
 
 /obj/item/utensil/foon/plastic

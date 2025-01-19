@@ -37,7 +37,7 @@
 			if(update_neighbors)
 				for(var/obj/effect/shield/shield in T)
 					shield.update_icon(FALSE)
-			add_overlay(image(icon = icon, icon_state = "[icon_state]_edge", dir = direction))
+			add_overlay(image(icon = icon, icon_state = "[icon_state]edge", dir = direction))
 
 // Prevents shuttles, singularities and pretty much everything else from moving the field segments away.
 // The only thing that is allowed to move us is the Destroy() proc.

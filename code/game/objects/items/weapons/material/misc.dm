@@ -1,8 +1,8 @@
 /obj/item/harpoon
 	name = "harpoon"
 	desc = "A short throwing spear with a deep barb, specifically designed to embed itself in its target."
-	_sharp = TRUE
-	_edge = TRUE
+	sharp = TRUE
+	edge = TRUE
 	icon = 'icons/obj/items/weapon/harpoon.dmi'
 	icon_state = "harpoon"
 	item_state = "harpoon"
@@ -39,16 +39,16 @@
 	SetName("broken harpoon")
 	desc = "A short spear with just a barb - if it once had a spearhead, it doesn't any more."
 	icon_state = "harpoon_bomb_spent"
-	_sharp = FALSE
-	_edge = FALSE
+	sharp = FALSE
+	edge = FALSE
 
 /obj/item/scythe
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	icon = 'icons/obj/items/tool/scythe.dmi'
 	icon_state = ICON_STATE_WORLD
-	_sharp = TRUE
-	_edge = TRUE
+	sharp = TRUE
+	edge = TRUE
 	throw_speed = 1
 	throw_range = 3
 	w_class = ITEM_SIZE_HUGE

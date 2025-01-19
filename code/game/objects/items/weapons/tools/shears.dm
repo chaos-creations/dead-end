@@ -8,8 +8,8 @@
 	material = /decl/material/solid/metal/steel
 	center_of_mass = @'{"x":18,"y":10}'
 	attack_verb = list("sheared", "cut")
-	_sharp = TRUE
-	_edge = TRUE
+	sharp = TRUE
+	edge = TRUE
 	material_alteration = MAT_FLAG_ALTERATION_COLOR
 	drop_sound = 'sound/foley/singletooldrop1.ogg'
 
