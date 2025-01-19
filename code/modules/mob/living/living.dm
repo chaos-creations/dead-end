@@ -1945,7 +1945,7 @@ default behaviour is:
 		var/datum/inventory_slot/gripper/slot = get_inventory_slot_datum(empty_hand)
 		if(!istype(slot))
 			continue
-		var/req_item_dex = item.get_required_attack_dexterity()
+		var/req_item_dex = item.get_required_attack_dexterity(src)
 		if(slot.requires_organ_tag)
 			var/obj/item/organ/external/hand = GET_EXTERNAL_ORGAN(src, slot.requires_organ_tag)
 			if(istype(hand) && hand.is_usable() && (!req_item_dex || hand.get_manual_dexterity() >= req_item_dex))

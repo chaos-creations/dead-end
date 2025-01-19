@@ -196,7 +196,7 @@
 	if(!isliving(user))
 		return FALSE
 
-	if(!user.check_dexterity(get_required_attack_dexterity()))
+	if(!user.check_dexterity(get_required_attack_dexterity(user)))
 		return FALSE
 
 	if(is_secure_gun() && !free_fire() && (!authorized_modes[sel_mode] || !registered_owner))
