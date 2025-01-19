@@ -3,18 +3,15 @@
 	if(has_item_effect(/decl/item_effect/sharpened, IE_CAT_EXAMINE) && get_item_effect_parameter(/decl/item_effect/sharpened, IE_CAT_DAMAGE, IE_PAR_USES) <= 0)
 		SetName("dulled [name]")
 
-/obj/item/proc/can_sharpen_with(obj/item/sharpening_with)
-	if(!has_item_effect(/decl/item_effect/sharpened, IE_CAT_DAMAGE))
+/obj/item/proc/can_sharpen_with(obj/sharpening_with)
+	if(!has_item_effect(/decl/item_effect/sharpened, IE_CAT_DAMAGE) || !material || !istype(sharpening_with))
 		return FALSE
 	var/list/params = get_item_effect_parameters(/decl/item_effect/sharpened, IE_CAT_DAMAGE)
 	if(!islist(params) || params[IE_PAR_USES] >= params[IE_PAR_MAX_USES])
 		return FALSE
-	if(istype(sharpening_with, /obj/structure/working/grindstone))
-		var/obj/structure/working/grindstone/stone = sharpening_with
-		return !material || material.hardness <= stone.stone_material?.hardness
-	return !material || material.hardness <= sharpening_with.material?.hardness
+	return material.hardness <= sharpening_with.get_sharpening_material()?.hardness
 
-/obj/item/proc/sharpen_with(mob/user, obj/item/sharpen_with)
+/obj/item/proc/sharpen_with(mob/user, obj/sharpen_with)
 	if(!has_item_effect(/decl/item_effect/sharpened, IE_CAT_DAMAGE))
 		return FALSE
 	var/list/params = get_item_effect_parameters(/decl/item_effect/sharpened, IE_CAT_DAMAGE)

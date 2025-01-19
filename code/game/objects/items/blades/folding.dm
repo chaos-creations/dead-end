@@ -3,7 +3,7 @@
 	desc                      = "A small folding knife."
 	icon                      = 'icons/obj/items/bladed/folding.dmi'
 	w_class                   = ITEM_SIZE_SMALL
-	sharp                    = FALSE
+	sharp                     = FALSE
 	pommel_material           = null
 	guard_material            = null
 	slot_flags                = null

@@ -7,7 +7,7 @@
 	material              = /decl/material/solid/metal/chromium
 	matter                = list(/decl/material/solid/metal/steel = MATTER_AMOUNT_SECONDARY)
 	w_class               = ITEM_SIZE_SMALL
-	sharp                = TRUE
+	sharp                 = TRUE
 	abstract_type         = /obj/item/tool/xeno
 	material_alteration   = 0
 	handle_material       = /decl/material/solid/organic/plastic
@@ -42,7 +42,7 @@
 	_base_attack_force = 1
 	attack_verb        = list("prodded", "attacked")
 	desc               = "A wood-handled brush with thick metallic wires for clearing away dust and loose scree."
-	sharp             = FALSE
+	sharp              = FALSE
 	material           = /decl/material/solid/metal/steel
 	handle_material    = /decl/material/solid/organic/wood/oak
 	excavation_amount  = 1

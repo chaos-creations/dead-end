@@ -40,3 +40,7 @@
 		if(!QDELETED(src) && working)
 			stop_working()
 	return TRUE
+
+/obj/structure/working/grindstone/get_sharpening_material()
+	RETURN_TYPE(/decl/material)
+	return stone_material
