@@ -1,6 +1,6 @@
 /datum/unit_test/vision_glasses
 	name = "EQUIPMENT: Vision Template"
-	template = /datum/unit_test/vision_glasses
+	abstract_type = /datum/unit_test/vision_glasses
 	var/mob/living/human/H = null
 	var/expectation = SEE_INVISIBLE_NOLIGHTING
 	var/glasses_type = null
