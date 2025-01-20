@@ -13,9 +13,6 @@
 /obj/effect/decal/cleanable/blood/gibs/robot/on_update_icon()
 	color = "#ffffff"
 
-/obj/effect/decal/cleanable/blood/gibs/robot/dry()	//pieces of robots do not dry up like
-	return
-
 /obj/effect/decal/cleanable/blood/gibs/robot/streak(var/list/directions)
 	spawn (0)
 		var/direction = pick(directions)
@@ -43,9 +40,6 @@
 	basecolor = SYNTH_BLOOD_COLOR
 	chemical = /decl/material/liquid/lube
 	cleanable_scent = "industrial lubricant"
-
-/obj/effect/decal/cleanable/blood/oil/dry()
-	return
 
 /obj/effect/decal/cleanable/blood/oil/streak
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
