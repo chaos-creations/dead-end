@@ -1,0 +1,5 @@
+author: Penelope Haze
+changes:
+  - {tweak: Mud can now receive footprints with any reagent other than mud. No more
+      conspicuously missing bloody footprints!}
+delete-after: true
