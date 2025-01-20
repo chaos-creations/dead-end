@@ -603,3 +603,10 @@
 		return TRUE
 	return FALSE
 
+// updates pixel offsets, triggers fluids, etc.
+/atom/movable/proc/on_turf_height_change(new_height)
+	if(simulated)
+		reset_offsets()
+		return TRUE
+	return FALSE
+

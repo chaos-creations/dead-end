@@ -323,9 +323,21 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 	W.pixel_y = (CELLSIZE * (cell_y + 0.5)) - center["y"]
 	W.pixel_z = 0
 
+// Does this structure override turf depth for the purposes of mob offsets?
+/obj/structure/proc/is_platform()
+	return FALSE
+
+/obj/structure/proc/is_z_passable()
+	return TRUE
+
+/obj/structure/on_turf_height_change(new_height)
+	 // We may be a fixed point.
+	return !is_platform() && ..()
+
 /obj/structure/hitby(var/atom/movable/AM, var/datum/thrownthing/TT)
 	. = ..()
 	if(. && (structure_flags & STRUCTURE_FLAG_THROWN_DAMAGE))
 		visible_message(SPAN_DANGER("\The [src] was hit by \the [AM]."))
 		playsound(src.loc, hitsound, 100, 1)
 		take_damage(AM.get_thrown_attack_force() * (TT.speed/THROWFORCE_SPEED_DIVISOR), AM.atom_damage_type)
+
