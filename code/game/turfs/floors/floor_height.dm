@@ -16,8 +16,7 @@
 	if(fluid_overlay)
 		fluid_overlay.update_icon()
 
-	// Clear footprints.
-	for(var/obj/effect/footprints/prints in contents)
-		qdel(prints)
+	for(var/atom/movable/thing in contents)
+		thing.on_turf_height_change(new_height)
 
 	return TRUE

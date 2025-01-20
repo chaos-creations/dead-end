@@ -18,6 +18,12 @@
 	footprints.Cut() // don't qdel images
 	. = ..()
 
+/obj/effect/footprints/on_turf_height_change(new_height)
+	if(simulated)
+		qdel(src)
+		return TRUE
+	return FALSE
+
 /obj/effect/footprints/on_update_icon()
 	set_overlays(footprints?.Copy())
 	compile_overlays()
