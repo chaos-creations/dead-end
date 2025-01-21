@@ -52,7 +52,7 @@
 				liquid_adjective = "soaked through"
 			if(1)
 				liquid_adjective = "entirely saturated"
-		to_chat(user, "It is [liquid_adjective] with liquid.")
+		to_chat(user, "It is [liquid_adjective] with [reagents.get_coated_name()].")
 
 /obj/item/towel/set_material(new_material)
 	. = ..()

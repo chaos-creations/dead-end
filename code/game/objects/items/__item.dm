@@ -399,8 +399,12 @@
 	if(drying_wetness > 0 && drying_wetness != initial(drying_wetness))
 		desc_comp += "\The [src] is [get_dryness_text()]."
 
+	if(coating?.total_volume)
+		desc_comp += "It is covered in [coating.get_coated_name()]." // It is covered in dilute oily slimy bloody mud.
+
 	if(check_rights(R_DEBUG, 0, user))
 		to_chat(user, "\The [src] has a temperature of [temperature]K.")
+
 
 	return ..(user, distance, "", jointext(desc_comp, "<br/>"))
 
@@ -1308,3 +1312,11 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/get_provided_intents(mob/wielder)
 	return null
+
+/obj/item/get_examine_prefix()
+	if(coating?.total_volume)
+		var/coating_string = coating.get_coated_adjectives() // component coloring is handled in here
+		if(get_config_value(/decl/config/enum/colored_coating_names) == CONFIG_COATING_COLOR_MIXTURE)
+			coating_string = FONT_COLORED(coating.get_color(), coating_string)
+		return coating_string
+	return ..()

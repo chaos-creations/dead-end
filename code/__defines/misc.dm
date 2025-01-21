@@ -142,6 +142,11 @@
 #define CONFIG_SERVER_JOIN_WHITELIST    3
 #define CONFIG_SERVER_CONNECT_WHITELIST 4
 
+// Coating name color config enums
+#define CONFIG_COATING_COLOR_NONE       1
+#define CONFIG_COATING_COLOR_MIXTURE    2
+#define CONFIG_COATING_COLOR_COMPONENTS 3
+
 // Location for server whitelist file to load from.
 #define CONFIG_SERVER_WHITELIST_FILE "config/server_whitelist.txt"
 
