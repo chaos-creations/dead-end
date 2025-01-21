@@ -252,6 +252,7 @@
 
 //Inserts 'a' or 'an' before X in ways \a doesn't allow
 #define ADD_ARTICLE(X) "[(lowertext(X[1]) in global.vowels) ? "an" : "a"] [X]"
+#define ADD_ARTICLE_GENDER(X, GENDER) (GENDER == PLURAL ? "some [X]" : ADD_ARTICLE(X))
 
 //Request Console Department Types
 #define RC_ASSIST 1		//Request Assistance

@@ -946,13 +946,10 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 	return 0 // Process Kill
 
 /obj/item/proc/get_examine_name()
-	. = name
-	if(coating?.total_volume)
-		. = SPAN_WARNING("<font color='[coating.get_color()]'>stained</font> [.]")
-	if(gender == PLURAL)
-		. = "some [.]"
-	else
-		. = "\a [.]"
+	var/examine_prefix = get_examine_prefix()
+	if(examine_prefix)
+		examine_prefix += " "
+	return ADD_ARTICLE_GENDER("[examine_prefix][name]", gender)
 
 /obj/item/proc/get_examine_line()
 	. = "[html_icon(src)] [get_examine_name()]"
