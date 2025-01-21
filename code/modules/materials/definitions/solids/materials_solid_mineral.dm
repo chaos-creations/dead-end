@@ -287,7 +287,7 @@
 		/decl/material/solid/metal/iron = 0.8,
 		/decl/material/solid/slag = 0.2
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_result_amount = 2
@@ -332,7 +332,7 @@
 		/decl/material/solid/metal/silver = 0.4,
 		/decl/material/solid/slag = 0.2
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_result_amount = 2
@@ -354,7 +354,7 @@
 		/decl/material/solid/metal/copper = 0.1,
 		/decl/material/solid/slag = 0.1
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_result_amount = 2
@@ -381,7 +381,7 @@
 		/decl/material/solid/metal/copper = 0.6,
 		/decl/material/solid/slag = 0.4
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_result_amount = 2
@@ -441,7 +441,7 @@
 		/decl/material/solid/metal/tungsten = 0.2,
 		/decl/material/solid/slag = 0.1
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "cassiterite"
@@ -469,7 +469,7 @@
 		/decl/material/solid/metal/iron = 0.2,
 		/decl/material/solid/slag = 0.5
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "wolframite"
@@ -498,7 +498,7 @@
 		/decl/material/solid/glass = 0.1,
 		/decl/material/solid/slag = 0.3
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "sperrylite"
@@ -527,7 +527,7 @@
 		/decl/material/solid/metal/iron = 0.1,
 		/decl/material/solid/slag = 0.2
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "sphalerite"
@@ -556,7 +556,7 @@
 		/decl/material/solid/metal/silver = 0.1,
 		/decl/material/solid/slag = 0.1
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "galena"
@@ -584,7 +584,7 @@
 		/decl/material/solid/metal/silver = 0.3,
 		/decl/material/solid/slag = 0.1
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "calaverite"
@@ -611,7 +611,7 @@
 		/decl/material/solid/metal/lead = 0.4,
 		/decl/material/solid/slag = 0.3
 	)
-	heating_point = GENERIC_SMELTING_HEAT_POINT
+	heating_point = LOW_SMELTING_HEAT_POINT
 	heating_sound = null
 	heating_message = null
 	ore_name = "crocoite"
