@@ -24,7 +24,6 @@
 	if(istype(ai))
 		QDEL_NULL(ai)
 	QDEL_NULL(lighting_master)
-	remove_screen_obj_references()
 	if(client)
 		for(var/atom/movable/AM in client.screen)
 			var/obj/screen/screenobj = AM
@@ -36,26 +35,6 @@
 	teleop = null
 	ghostize()
 	return ..()
-
-/mob/proc/remove_screen_obj_references()
-	QDEL_NULL_SCREEN(internals)
-	QDEL_NULL_SCREEN(oxygen)
-	QDEL_NULL_SCREEN(toxin)
-	QDEL_NULL_SCREEN(fire)
-	QDEL_NULL_SCREEN(bodytemp)
-	QDEL_NULL_SCREEN(healths)
-	QDEL_NULL_SCREEN(throw_icon)
-	QDEL_NULL_SCREEN(maneuver_icon)
-	QDEL_NULL_SCREEN(nutrition_icon)
-	QDEL_NULL_SCREEN(hydration_icon)
-	QDEL_NULL_SCREEN(pressure)
-	QDEL_NULL_SCREEN(pain)
-	QDEL_NULL_SCREEN(up_hint)
-	QDEL_NULL_SCREEN(item_use_icon)
-	QDEL_NULL_SCREEN(radio_use_icon)
-	QDEL_NULL_SCREEN(gun_move_icon)
-	QDEL_NULL_SCREEN(gun_setting_icon)
-	QDEL_NULL_SCREEN(zone_sel)
 
 /mob/Initialize()
 	if(ispath(skillset))
@@ -890,7 +869,7 @@
 
 /mob/proc/toggle_throw_mode(force_set)
 	in_throw_mode = isnull(force_set) ? !in_throw_mode : force_set
-	throw_icon?.update_icon()
+	refresh_hud_element(HUD_THROW)
 
 /mob/proc/toggle_antag_pool()
 	set name = "Toggle Add-Antag Candidacy"
@@ -908,11 +887,9 @@
 			to_chat(usr, "The game is not currently looking for antags.")
 	else
 		to_chat(usr, "You must be observing or in the lobby to join the antag pool.")
+
 /mob/proc/is_invisible_to(var/mob/viewer)
 	return (!alpha || !mouse_opacity || viewer.see_invisible < invisibility)
-
-/client/proc/check_has_body_select()
-	return mob && mob.hud_used && istype(mob.zone_sel, /obj/screen/zone_selector)
 
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
@@ -950,10 +927,7 @@
 	toggle_zone_sel(list(BP_L_LEG,BP_L_FOOT))
 
 /client/proc/toggle_zone_sel(list/zones)
-	if(!check_has_body_select())
-		return
-	var/obj/screen/zone_selector/selector = mob.zone_sel
-	selector.set_selected_zone(next_in_list(mob.get_target_zone(), zones))
+	mob.set_target_zone(next_in_list(mob.get_target_zone(), zones))
 
 /mob/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
@@ -1251,12 +1225,16 @@
 	return
 
 /mob/proc/set_target_zone(new_zone)
-	if(zone_sel)
-		return zone_sel?.set_selected_zone(new_zone)
-	return FALSE
+	if(new_zone == selected_zone)
+		return
+	var/old_zone = selected_zone
+	selected_zone = new_zone
+	var/obj/screen/zone_selector/selector = get_hud_element(HUD_ZONE_SELECT)
+	if(selector)
+		selector.set_selected_zone(new_zone, old_zone)
 
 /mob/proc/get_target_zone()
-	return zone_sel?.selecting || BP_CHEST
+	return selected_zone
 
 /mob/proc/get_default_temperature_threshold(threshold)
 	switch(threshold)
@@ -1388,7 +1366,7 @@
 /// THIS DOES NOT RELATE TO HELD ITEM SLOTS. It is very specifically a functional BP_L_HAND or BP_R_HAND organ, not necessarily a gripper.
 /mob/proc/get_usable_hand_slot_organ()
 	var/obj/item/organ/external/paw = GET_EXTERNAL_ORGAN(src, BP_L_HAND)
-	if(!istype(paw) && !paw.is_usable())
+	if(istype(paw) && !paw.is_usable())
 		paw = GET_EXTERNAL_ORGAN(src, BP_R_HAND)
 	if(istype(paw) && paw.is_usable())
 		return paw

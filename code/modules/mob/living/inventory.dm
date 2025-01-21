@@ -63,8 +63,7 @@
 	if(slot != last_slot && (slot in get_held_item_slots()))
 		_held_item_slot_selected = slot
 		if(istype(hud_used))
-			for(var/atom/hand as anything in hud_used.hand_hud_objects)
-				hand.update_icon()
+			hud_used.update_hand_elements()
 		var/obj/item/I = get_active_held_item()
 		if(istype(I))
 			I.on_active_hand()

@@ -521,6 +521,7 @@ default behaviour is:
 	var/turf/old_loc = loc
 	. = ..()
 	if(.)
+		refresh_hud_element(HUD_UP_HINT)
 		handle_grabs_after_move(old_loc, Dir)
 		if(active_storage && !active_storage.can_view(src))
 			active_storage.close(src)
@@ -1148,8 +1149,7 @@ default behaviour is:
 /mob/living/update_action_buttons()
 	if(!istype(hud_used) || !client)
 		return
-
-	if(hud_used.hud_shown != 1)	//Hud toggled to minimal
+	if(!hud_used.is_hud_shown())	//Hud toggled to minimal
 		return
 
 	client.screen -= hud_used.hide_actions_toggle
@@ -2027,6 +2027,10 @@ default behaviour is:
 	update_equipment_overlay(slot_shoes_str)
 	return TRUE
 
+/mob/living/get_cell()
+	var/obj/item/organ/internal/cell/cell = get_organ(BP_CELL, /obj/item/organ/internal/cell)
+	return istype(cell) ? cell.cell : null
+
 /mob/living/verb/pull_punches()
 	set name = "Switch Stance"
 	set desc = "Try not to hurt them."
@@ -2034,3 +2038,4 @@ default behaviour is:
 	if(!incapacitated())
 		pulling_punches = !pulling_punches
 		to_chat(src, SPAN_NOTICE("You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"]."))
+

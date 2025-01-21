@@ -113,8 +113,8 @@
 
 	if(istype(new_intent) && get_intent() != new_intent)
 		_a_intent = new_intent
-		if(istype(hud_used) && hud_used.action_intent)
-			hud_used.action_intent.update_icon()
+		if(istype(hud_used))
+			hud_used.refresh_element(HUD_INTENT)
 		return TRUE
 
 	return FALSE
@@ -155,8 +155,8 @@
 		if(QDELETED(src))
 			return
 	_available_intents = null
-	if(!skip_update && istype(hud_used) && hud_used.action_intent)
-		hud_used.action_intent.update_icon()
+	if(!skip_update)
+		refresh_hud_element(HUD_INTENT)
 
 /mob/proc/get_available_intents(skip_update, force)
 	var/obj/item/held = get_active_held_item()
@@ -179,8 +179,8 @@
 		// Sort by hotkey order.
 		_available_intents = sortTim(_available_intents, /proc/cmp_decl_sort_value_asc)
 		// Update our HUD immediately.
-		if(!skip_update && istype(hud_used) && hud_used.action_intent)
-			hud_used.action_intent.update_icon()
+		if(!skip_update)
+			refresh_hud_element(HUD_INTENT)
 	return _available_intents
 
 /mob/proc/cycle_intent(input)
