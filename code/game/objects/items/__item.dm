@@ -1060,6 +1060,13 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 	if(coating.total_volume <= MINIMUM_CHEMICAL_VOLUME)
 		clean(FALSE)
 
+/obj/item/proc/transfer_coating_to(atom/target, amount = 1, multiplier = 1, copy = 0, defer_update = FALSE, transferred_phases = (MAT_PHASE_LIQUID | MAT_PHASE_SOLID))
+	if(!coating)
+		return
+	coating.trans_to(target, amount, multiplier)
+	if(coating.total_volume <= MINIMUM_CHEMICAL_VOLUME)
+		clean(FALSE)
+
 /obj/item/clean(clean_forensics=TRUE)
 	. = ..()
 	QDEL_NULL(coating)
