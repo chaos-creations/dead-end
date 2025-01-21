@@ -58,9 +58,7 @@
 
 // ============================================================================
 
-var/global/default_mobloc = null
-
-/proc/create_test_mob_with_mind(var/turf/mobloc, var/mobtype = /mob/living/human)
+/datum/unit_test/mob_damage/proc/create_test_mob_with_mind(var/turf/mobloc, var/mobtype = /mob/living/human)
 	var/list/test_result = list("result" = FAILURE, "msg"    = "", "mobref" = null)
 
 	if(!mobloc)
