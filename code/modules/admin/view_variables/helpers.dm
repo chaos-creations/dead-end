@@ -1,6 +1,4 @@
-
-// Keep these two together, they *must* be defined on both
-// If /client ever becomes /datum/client or similar, they can be merged
+// If /client/var/parent_type ever stops being /datum, this proc will need to be redefined on client.
 /datum/proc/get_view_variables_header()
 	return "<b>[src]</b>"
 

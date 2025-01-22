@@ -1,4 +1,5 @@
 /datum/map_template
+	abstract_type = /datum/map_template
 	///Name for differentiating templates
 	var/name = "Default Template Name"
 	///The width of the template's levels. Size is preloaded from template during template registration.
@@ -23,8 +24,6 @@
 	var/modify_tag_vars = TRUE
 	///List of strings to store the templates under for mass retrieval.
 	var/list/template_categories
-	///If this is equal to current type, the datum is abstract and should not be created.
-	var/template_parent_type = /datum/map_template
 	///The initial type of level_data to instantiate new z-level with initially. (Is replaced by whatever is in the map file.) If null, will use default.
 	var/level_data_type
 	/// Various tags used for selecting templates for placement on a map.

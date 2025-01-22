@@ -129,7 +129,7 @@ var/global/default_mobloc = null
 
 /datum/unit_test/mob_damage
 	name = "MOB: Template for mob damage"
-	template = /datum/unit_test/mob_damage
+	abstract_type = /datum/unit_test/mob_damage
 	var/damagetype = BRUTE
 	var/mob_type = /mob/living/human
 	var/expected_vulnerability = STANDARD

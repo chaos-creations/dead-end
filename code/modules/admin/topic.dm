@@ -979,8 +979,7 @@
 		var/obj/effect/stop/S
 		S = new /obj/effect/stop(M.loc)
 		S.victim = M
-		spawn(20)
-			qdel(S)
+		QDEL_IN(S, 2 SECONDS)
 
 		var/turf/floor/T = get_turf(M)
 		if(istype(T))

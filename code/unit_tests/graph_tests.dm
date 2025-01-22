@@ -430,7 +430,7 @@
 * Base Test Setup *
 ******************/
 /datum/unit_test/graph_test
-	template = /datum/unit_test/graph_test
+	abstract_type = /datum/unit_test/graph_test
 	async = TRUE
 	var/list/graphs
 
