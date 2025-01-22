@@ -41,6 +41,10 @@
 	chemical = /decl/material/liquid/lube
 	cleanable_scent = "industrial lubricant"
 
+/obj/effect/decal/cleanable/blood/oil/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /obj/effect/decal/cleanable/blood/oil/streak
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2

@@ -202,7 +202,7 @@
 	after_load()
 	Master.StopLoadingMap()
 
-	log_game("[name] loaded at at [T.x],[T.y],[T.z]")
+	log_game("[name] loaded at [T.x],[T.y],[T.z]")
 	loaded++
 
 	return TRUE
