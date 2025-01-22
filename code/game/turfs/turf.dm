@@ -118,6 +118,10 @@
 	else if (permit_ao)
 		queue_ao()
 
+	// we're being loaded in a new z-level, we need to build lighting
+	if(mapload && !changing_turf && SSlighting.initialized)
+		lighting_build_overlay()
+
 	if(simulated)
 		updateVisibility(src, FALSE)
 
