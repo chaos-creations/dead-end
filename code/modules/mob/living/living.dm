@@ -2024,3 +2024,11 @@ default behaviour is:
 	// or things should just update their worn slot when coating is added
 	update_equipment_overlay(slot_shoes_str)
 	return TRUE
+
+/mob/living/verb/pull_punches()
+	set name = "Switch Stance"
+	set desc = "Try not to hurt them."
+	set category = "IC"
+	if(!incapacitated())
+		pulling_punches = !pulling_punches
+		to_chat(src, SPAN_NOTICE("You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"]."))
