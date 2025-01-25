@@ -507,7 +507,7 @@
 			return TRUE
 	return ..()
 
-/obj/item/end_throw()
+/obj/item/end_throw(datum/thrownthing/TT)
 	. = ..()
 	squash_item()
 
