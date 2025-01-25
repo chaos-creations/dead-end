@@ -534,7 +534,7 @@
 		if(below)
 			below.update_weather(new_weather)
 
-// Updates turf participation in ZAS according to outside status. Must be called whenever the outside status of a turf may change.
+/// Updates turf participation in ZAS according to outside status and atmosphere participation bools. Must be called whenever any of those values may change.
 /turf/proc/update_external_atmos_participation()
 	var/old_outside = last_outside_check
 	last_outside_check = OUTSIDE_UNCERTAIN
@@ -718,8 +718,11 @@
 	var/mob/living/human/H = M
 	var/unique_enzymes = H.get_unique_enzymes()
 	var/blood_type     = H.get_blood_type()
+	var/blood_reagent  = H.species.blood_reagent
 	if(unique_enzymes && blood_type)
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
+			if(B.chemical != blood_reagent)
+				continue
 			if(!LAZYACCESS(B.blood_DNA, unique_enzymes))
 				LAZYSET(B.blood_DNA, unique_enzymes, blood_type)
 				LAZYSET(B.blood_data, unique_enzymes, REAGENT_DATA(H.vessel, H.species.blood_reagent))

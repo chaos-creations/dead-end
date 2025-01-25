@@ -7,7 +7,6 @@
 /datum/map_template/planetoid/random
 	name                 = "random planetoid"
 	abstract_type        = /datum/map_template/planetoid/random
-	template_parent_type = /datum/map_template/planetoid/random
 	modify_tag_vars      = TRUE //Would set it to false, since we're generating everything on the fly, but unit test doesn't like it
 	tallness             = 1 //Amount of vertical z-levels to generate for this planet.
 

@@ -316,12 +316,13 @@
 		to_chat(user, "There is no [get_fitting_name()] in this light.")
 		return TRUE
 
-	if(ishuman(user))
-		var/mob/living/human/H = user
-		if(H.species.can_shred(H))
-			visible_message("<span class='warning'>[user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass.")
-			broken()
-			return TRUE
+	if(user.can_shred())
+		visible_message(
+			SPAN_DANGER("\The [user] smashes the light!"),
+			blind_message = "You hear a tinkle of breaking glass."
+		)
+		broken()
+		return TRUE
 
 	// make it burn hands if not wearing fire-insulated gloves
 	if(on)
@@ -612,19 +613,22 @@
 /obj/item/light/proc/switch_on()
 	switchcount++
 	if(rigged)
-		log_and_message_admins("Rigged light explosion, last touched by [fingerprintslast]")
-		var/turf/T = get_turf(src.loc)
-		spawn(0)
-			sleep(2)
-			explosion(T, 0, 0, 3, 5)
-			sleep(1)
-			qdel(src)
+		addtimer(CALLBACK(src, PROC_REF(do_rigged_explosion)), 0.2 SECONDS)
 		status = LIGHT_BROKEN
 	else if(prob(min(60, switchcount*switchcount*0.01)))
 		status = LIGHT_BURNED
 	else if(sound_on)
 		playsound(src, sound_on, 75)
 	return status
+
+/obj/item/light/proc/do_rigged_explosion()
+	if(!rigged)
+		return
+	log_and_message_admins("Rigged light explosion, last touched by [fingerprintslast]")
+	var/turf/T = get_turf(src)
+	explosion(T, 0, 0, 3, 5)
+	if(!QDELETED(src))
+		QDEL_IN(src, 1)
 
 /obj/machinery/light/do_simple_ranged_interaction(var/mob/user)
 	if(lightbulb)

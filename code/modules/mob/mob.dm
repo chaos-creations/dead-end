@@ -1387,8 +1387,29 @@
 
 /// THIS DOES NOT RELATE TO HELD ITEM SLOTS. It is very specifically a functional BP_L_HAND or BP_R_HAND organ, not necessarily a gripper.
 /mob/proc/get_usable_hand_slot_organ()
-	var/static/list/hand_slots = list(BP_L_HAND, BP_R_HAND)
-	for(var/slot in shuffle(hand_slots))
-		var/obj/item/organ/external/hand = GET_EXTERNAL_ORGAN(src, slot)
-		if(istype(hand) && hand.is_usable())
-			return hand
+	var/obj/item/organ/external/paw = GET_EXTERNAL_ORGAN(src, BP_L_HAND)
+	if(!istype(paw) && !paw.is_usable())
+		paw = GET_EXTERNAL_ORGAN(src, BP_R_HAND)
+	if(istype(paw) && paw.is_usable())
+		return paw
+
+// Called when using the shredding behavior.
+/mob/proc/can_shred(var/mob/living/human/H, var/ignore_intent, var/ignore_antag)
+	if((!ignore_intent && !check_intent(I_FLAG_HARM)) || pulling_punches)
+		return FALSE
+	if(!ignore_antag && mind && !player_is_antag(mind))
+		return FALSE
+	if(get_equipped_item(slot_handcuffed_str) || buckled)
+		return FALSE
+	for(var/decl/natural_attack/attack as anything in get_mob_natural_attacks())
+		if(attack.is_usable(src) && attack.shredding)
+			return TRUE
+	return FALSE
+
+/mob/proc/get_mob_natural_attacks()
+	for(var/obj/item/organ/external/limb in get_external_organs())
+		if(!limb.is_usable())
+			continue
+		var/list/limb_unarmed_attacks = limb.get_natural_attacks()
+		if(istype(limb_unarmed_attacks, /decl/natural_attack) || (islist(limb_unarmed_attacks) && length(limb_unarmed_attacks)))
+			LAZYDISTINCTADD(., limb_unarmed_attacks)

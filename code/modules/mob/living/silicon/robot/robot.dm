@@ -636,8 +636,7 @@
 	return user?.attempt_hug(src)
 
 /mob/living/silicon/robot/default_hurt_interaction(mob/user)
-	var/decl/species/user_species = user.get_species()
-	if(user_species?.can_shred(user))
+	if(user.can_shred())
 		attack_generic(user, rand(30,50), "slashed")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		return TRUE
@@ -1006,7 +1005,7 @@
 					sleep(5)
 					to_chat(src, "<span class='danger'>Would you like to send a report to the vendor? Y/N</span>")
 					sleep(10)
-					to_chat(src, "<span class='danger'>> N</span>")
+					to_chat(src, "<span class='danger'>\> N</span>")
 					sleep(20)
 					to_chat(src, "<span class='danger'>ERRORERRORERROR</span>")
 					to_chat(src, "<b>Obey these laws:</b>")
@@ -1077,8 +1076,7 @@
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	flick("blspell", animation)
-	sleep(5)
-	qdel(animation)
+	QDEL_IN(animation, 0.5 SECONDS)
 
 /mob/living/silicon/robot/proc/handle_radio_transmission()
 	if(!is_component_functioning("radio"))
