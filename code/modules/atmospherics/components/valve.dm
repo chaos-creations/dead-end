@@ -3,7 +3,7 @@
 	icon_state = "map_valve0"
 
 	name = "manual valve"
-	desc = "A pipe valve."
+	desc = "A valve that controls flow through a pipe network, and must be operated by hand."
 
 	level = LEVEL_BELOW_PLATING
 	dir = SOUTH
@@ -150,7 +150,7 @@
 
 /obj/machinery/atmospherics/valve/digital		// can be controlled by AI
 	name = "digital valve"
-	desc = "A digitally controlled valve."
+	desc = "A digitally-controlled valve that controls flow through a pipe network."
 	icon = 'icons/atmos/digital_valve.dmi'
 	uncreated_component_parts = list(
 		/obj/item/stock_parts/radio/receiver/buildable,

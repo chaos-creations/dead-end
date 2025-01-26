@@ -416,7 +416,7 @@
 	level = LEVEL_ABOVE_PLATING
 
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers
-	name="Scrubbers pipe manifold"
+	name = "scrubbers pipe manifold"
 	desc = "A manifold composed of scrubbers pipes."
 	icon_state = "map-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
@@ -424,7 +424,7 @@
 	color = PIPE_COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold/visible/supply
-	name="Air supply pipe manifold"
+	name = "air supply pipe manifold"
 	desc = "A manifold composed of supply pipes."
 	icon_state = "map-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
@@ -463,7 +463,7 @@
 	alpha = 128		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers
-	name="Scrubbers pipe manifold"
+	name = "scrubbers pipe manifold"
 	desc = "A manifold composed of scrubbers pipes."
 	icon_state = "map-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
@@ -471,7 +471,7 @@
 	color = PIPE_COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply
-	name="Air supply pipe manifold"
+	name = "air supply pipe manifold"
 	desc = "A manifold composed of supply pipes."
 	icon_state = "map-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
@@ -699,7 +699,7 @@
 	connect_types = CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/simple/visible/universal
-	name="Universal pipe adapter"
+	name = "universal pipe adapter"
 	desc = "An adapter for regular, supply, scrubbers, and fuel pipes."
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE
 	icon_state = "map_universal"
@@ -717,8 +717,8 @@
 			universal_underlays(direction)
 
 /obj/machinery/atmospherics/pipe/simple/hidden/universal
-	name="Universal pipe adapter"
-	desc = "An adapter for regular, supply and scrubbers pipes."
+	name = "universal pipe adapter"
+	desc = "An adapter for regular, supply, scrubbers, and fuel pipes."
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_HE
 	icon_state = "map_universal"
 	build_icon_state = "universal"

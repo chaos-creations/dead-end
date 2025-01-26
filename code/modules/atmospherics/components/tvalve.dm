@@ -4,7 +4,7 @@
 	var/base_icon_state = "tvalve"
 
 	name = "manual switching valve"
-	desc = "A pipe valve."
+	desc = "A pipe valve that switches gas flow between two branches, and must be operated by hand."
 
 	level = LEVEL_BELOW_PLATING
 	dir = SOUTH
@@ -176,7 +176,7 @@
 
 /obj/machinery/atmospherics/tvalve/digital		// can be controlled by AI
 	name = "digital switching valve"
-	desc = "A digitally controlled valve."
+	desc = "A digitally-controlled pipe valve that switches gas flow between two branches."
 	icon = 'icons/atmos/digital_tvalve.dmi'
 	icon_state = "map_tvalve0"
 
