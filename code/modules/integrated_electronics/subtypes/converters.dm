@@ -109,6 +109,7 @@
 
 /obj/item/integrated_circuit/converter/lowercase
 	name = "lowercase string converter"
+	// i'm not fixing the capitalization here to fit style guides because it's funny actually
 	desc = "this circuit will cause a string to come out in all lowercase."
 	icon_state = "lowercase"
 	inputs = list("input" = IC_PINTYPE_STRING)
@@ -128,6 +129,7 @@
 
 /obj/item/integrated_circuit/converter/uppercase
 	name = "uppercase string converter"
+	// see capitalization note above
 	desc = "THIS WILL CAUSE A STRING TO COME OUT IN ALL UPPERCASE."
 	icon_state = "uppercase"
 	inputs = list("input" = IC_PINTYPE_STRING)

@@ -43,7 +43,7 @@
 
 /obj/item/integrated_circuit/output/access_displayer
 	name = "access circuit"
-	desc = "broadcasts access for your assembly via a passkey."
+	desc = "A circuit that broadcasts access for your assembly via a passkey."
 	extended_desc = "Useful for moving drones through airlocks."
 
 	complexity = 4

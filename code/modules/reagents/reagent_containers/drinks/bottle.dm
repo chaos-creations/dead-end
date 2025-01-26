@@ -409,7 +409,7 @@
 
 /obj/item/chems/drinks/bottle/cola
 	name = "\improper Space Cola"
-	desc = "Cola. in space."
+	desc = "Cola... in space."
 	icon_state = "colabottle"
 	center_of_mass = @'{"x":16,"y":6}'
 
