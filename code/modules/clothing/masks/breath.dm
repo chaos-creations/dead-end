@@ -27,7 +27,7 @@
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/mask/breath/scba
-	desc = "A close-fitting self contained breathing apparatus mask. Can be connected to an air supply."
+	desc = "A close-fitting self-contained breathing apparatus mask. Can be connected to an air supply."
 	name = "\improper SCBA mask"
 	icon = 'icons/clothing/mask/breath_scuba.dmi'
 	item_flags = ITEM_FLAG_AIRTIGHT|ITEM_FLAG_FLEXIBLEMATERIAL

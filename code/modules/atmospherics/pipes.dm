@@ -223,7 +223,7 @@
 	icon = 'icons/atmos/pipes.dmi'
 	icon_state = "11"
 	name = "pipe"
-	desc = "A one meter section of regular pipe."
+	desc = "A one-meter section of regular pipe."
 
 	volume = ATMOS_DEFAULT_VOLUME_PIPE
 
@@ -285,7 +285,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers
 	name = "scrubbers pipe"
-	desc = "A one meter section of scrubbers pipe."
+	desc = "A one-meter section of scrubbers pipe."
 	icon_state = "11-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
 	icon_connect_type = "-scrubbers"
@@ -293,7 +293,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/visible/supply
 	name = "air supply pipe"
-	desc = "A one meter section of supply pipe."
+	desc = "A one-meter section of supply pipe."
 	icon_state = "11-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
 	icon_connect_type = "-supply"
@@ -333,7 +333,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers
 	name = "scrubbers pipe"
-	desc = "A one meter section of scrubbers pipe."
+	desc = "A one-meter section of scrubbers pipe."
 	icon_state = "11-scrubbers"
 	connect_types = CONNECT_TYPE_SCRUBBER
 	icon_connect_type = "-scrubbers"
@@ -341,7 +341,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/hidden/supply
 	name = "air supply pipe"
-	desc = "A one meter section of supply pipe."
+	desc = "A one-meter section of supply pipe."
 	icon_state = "11-supply"
 	connect_types = CONNECT_TYPE_SUPPLY
 	icon_connect_type = "-supply"

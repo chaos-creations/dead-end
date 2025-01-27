@@ -1,6 +1,6 @@
 /obj/item/clothing/dress/green
 	name = "green dress"
-	desc = "A simple, tight fitting green dress."
+	desc = "A simple, tight-fitting green dress."
 	icon = 'icons/clothing/dresses/dress_green.dmi'
 
 /obj/item/clothing/dress/yellow
@@ -15,12 +15,12 @@
 
 /obj/item/clothing/dress/pink
 	name = "pink dress"
-	desc = "A simple, tight fitting pink dress."
+	desc = "A simple, tight-fitting pink dress."
 	icon = 'icons/clothing/dresses/dress_pink.dmi'
 
 /obj/item/clothing/dress/purple
 	name = "purple dress"
-	desc= "A simple, tight fitting purple dress."
+	desc= "A simple, tight-fitting purple dress."
 	icon = 'icons/clothing/dresses/dress_purple.dmi'
 
 /obj/item/clothing/dress/saloon

@@ -290,7 +290,7 @@
 
 /obj/item/chems/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequila, served in space night clubs across the galaxy."
+	desc = "Silver laced tequila, served in space nightclubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = @'{"x":16,"y":6}'
 

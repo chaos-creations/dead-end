@@ -51,7 +51,7 @@
 
 /datum/uplink_item/item/visible_weapons/energy_gun
 	name = "Energy Gun"
-	desc = "An energy based sidearm with three different lethality settings."
+	desc = "An energy-based sidearm with three different lethality settings."
 	item_cost = 32
 	path = /obj/item/gun/energy/gun
 

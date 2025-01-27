@@ -1,4 +1,4 @@
-// These involve BYOND's built in filters that do visual effects, and not stuff that distinguishes between things.
+// These involve BYOND's built-in filters that do visual effects, and not stuff that distinguishes between things.
 
 // All of this ported from TG.
 // And then ported to Nebula from Polaris.
