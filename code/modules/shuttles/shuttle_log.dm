@@ -17,7 +17,7 @@
 		SSshuttle.shuttle_logs[given_shuttle] = src
 
 /datum/shuttle_log/Destroy()
-	update_registred()
+	update_registered()
 	registered = null
 	current_mission = null
 	QDEL_NULL_LIST(missions)
@@ -30,7 +30,7 @@
 /datum/shuttle_log/proc/unregister(datum/nano_module/module)
 	registered -= module
 
-/datum/shuttle_log/proc/update_registred()
+/datum/shuttle_log/proc/update_registered()
 	for(var/datum/nano_module/module in registered)
 		SSnano.update_uis(module)
 
@@ -49,7 +49,7 @@
 			qdel(old_report)
 		new_report.mission.set_value(mission.name)
 		mission.other_reports += report
-	update_registred()
+	update_registered()
 	return 1
 
 /datum/shuttle_log/proc/process_queue()
@@ -64,7 +64,7 @@
 	if(!current_mission && length(queued_missions))
 		current_mission = queued_missions[1]
 		current_mission.stage = SHUTTLE_MISSION_PLANNED
-	update_registred()
+	update_registered()
 
 /datum/shuttle_log/proc/create_mission(name)
 	var/datum/shuttle_mission/mission = new()
@@ -85,7 +85,7 @@
 		mission.name = name
 		for(var/datum/computer_file/report/recipient/shuttle/report in mission.other_reports)
 			report.mission.set_value(name)
-		update_registred()
+		update_registered()
 
 //Only missions that haven't started can be deleted; returns 0 on failure.
 /datum/shuttle_log/proc/delete_mission(datum/shuttle_mission/mission)

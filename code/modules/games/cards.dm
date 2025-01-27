@@ -106,7 +106,7 @@ var/global/list/card_decks = list()
 
 /obj/item/deck/compact
 	name = "compact deck of cards"
-	desc = "A deck of playing cards. Looks like this one hasn't numbers from two to five, and jokers."
+	desc = "A deck of playing cards. Looks like this one is missing numbers from two to five, and both jokers."
 	icon_state = "deck"
 
 /obj/item/deck/compact/generate_cards()
@@ -266,7 +266,7 @@ var/global/list/card_decks = list()
 
 /obj/item/pack
 	name = "card pack"
-	desc = "For those with disposible income."
+	desc = "For those with disposable income."
 	icon_state = "card_pack"
 	icon = 'icons/obj/items/playing_cards.dmi'
 	w_class = ITEM_SIZE_SMALL

@@ -236,7 +236,7 @@
 
 /obj/item/checker/bishop
 	name = "bishop"
-	desc = "What corruption occured, urging holy men to fight?"
+	desc = "What corruption occurred, urging holy men to fight?"
 
 /obj/item/checker/bishop/red
 	piece_color ="red"

@@ -25,18 +25,18 @@
 
 /obj/item/clothing/dress/saloon
 	name = "saloon girl dress"
-	desc = "A old western inspired gown for the girl who likes to drink."
+	desc = "An old western-inspired gown for the girl who likes to drink."
 	icon = 'icons/clothing/dresses/dress_saloon.dmi'
 
 /obj/item/clothing/dress/cap
 	name = "captain's dress uniform"
-	desc = "Feminine fashion for the style concious captain."
+	desc = "Feminine fashion for the style-conscious captain."
 	icon = 'icons/clothing/dresses/uniform_captain_dress.dmi'
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY|SLOT_ARMS
 
 /obj/item/clothing/dress/hop
 	name = "head of personnel dress uniform"
-	desc = "Feminine fashion for the style concious HoP."
+	desc = "Feminine fashion for the style-conscious HoP."
 	icon = 'icons/clothing/dresses/dress_hop.dmi'
 	body_parts_covered = SLOT_UPPER_BODY|SLOT_LOWER_BODY|SLOT_ARMS
 

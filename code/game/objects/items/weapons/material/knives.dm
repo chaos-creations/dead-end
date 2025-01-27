@@ -119,7 +119,7 @@
 //Utility knives
 /obj/item/knife/utility
 	name = "utility knife"
-	desc = "An utility knife with a polymer handle, commonly used through human space."
+	desc = "A utility knife with a polymer handle, commonly used through human space."
 	icon = 'icons/obj/items/weapon/knives/utility.dmi'
 	w_class = ITEM_SIZE_SMALL
 	draw_handle = TRUE

@@ -152,7 +152,7 @@
 
 /obj/item/gun/launcher/syringe/disguised
 	name = "deluxe electronic cigarette"
-	desc = "A premium model eGavana MK3 electronic cigarette, shaped like a cigar."
+	desc = "A premium model eHavana MK3 electronic cigarette, shaped like a cigar."
 	icon = 'icons/clothing/mask/smokables/cigarette_electronic_deluxe.dmi'
 	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_SMALL

@@ -284,7 +284,7 @@
 /obj/item/clothing/mask/chameleon
 	name = "gas mask"
 	icon = 'icons/clothing/mask/gas_mask_full.dmi'
-	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
+	desc = "It looks like a plain gas mask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = @'{"esoteric":3}'
 	item_flags = ITEM_FLAG_INVALID_FOR_CHAMELEON
 	bodytype_equip_flags = null

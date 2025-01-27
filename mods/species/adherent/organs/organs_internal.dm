@@ -136,7 +136,7 @@
 /obj/item/organ/internal/powered/cooling_fins
 	name = "cooling fins"
 	gender = PLURAL
-	desc = "A lacy filligree of heat-radiating fins."
+	desc = "A lacy filigree of heat-radiating fins."
 	action_button_name = "Toggle Cooling"
 	action_button_desc = "Enables or disables your battery-powered internal cooling system"
 	default_action_type = /datum/action/item_action/organ/adherent
