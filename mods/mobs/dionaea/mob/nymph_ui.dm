@@ -1,17 +1,3 @@
-/* Commented out due to issues with interactions and combined intent flags.
-/obj/screen/intent/binary/diona
-	icon = 'mods/mobs/dionaea/icons/ui_intents.dmi'
-	screen_loc = DIONA_SCREEN_LOC_INTENT
-
-/decl/intent/harm/binary/diona
-	icon = 'mods/mobs/dionaea/icons/ui_intent_overlay.dmi'
-	uid = "intent_harm_binary_diona"
-
-/decl/intent/help/binary/diona
-	icon = 'mods/mobs/dionaea/icons/ui_intent_overlay.dmi'
-	uid = "intent_help_binary_diona"
-*/
-
 /decl/ui_style/diona
 	name = "Diona"
 	restricted = TRUE

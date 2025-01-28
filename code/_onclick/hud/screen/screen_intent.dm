@@ -98,20 +98,21 @@
 
 	var/decl/intent/owner_intent = owner.get_intent()
 	var/i = 1
-	var/list/all_intents = owner.get_available_intents()
+	var/list/unused_selectors = intent_selectors?.Copy()
+	var/list/all_intents = owner.get_available_intents(skip_update = TRUE)
 	for(var/decl/intent/intent as anything in all_intents)
 		var/obj/screen/intent_button/intent_button = get_intent_button(i)
 		if(intent == owner_intent)
 			intent_button.set_selected(intent)
 		else
 			intent_button.set_deselected(intent)
+		LAZYREMOVE(unused_selectors, intent_button)
 		i++
 		apply_intent_button_offset(intent_button, i, length(all_intents))
 		add_vis_contents(intent_button)
 
-	if(i < length(intent_selectors))
-		for(var/index = i+1 to length(intent_selectors))
-			remove_vis_contents(intent_selectors[index])
+	if(length(unused_selectors))
+		remove_vis_contents(unused_selectors)
 
 /obj/screen/intent/binary
 	intent_width     = 32

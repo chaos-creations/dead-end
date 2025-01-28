@@ -58,6 +58,7 @@
 		queue_hand_rebuild()
 
 /mob/living/select_held_item_slot(var/slot)
+	. = ..()
 	var/last_slot = get_active_held_item_slot()
 	if(slot != last_slot && (slot in get_held_item_slots()))
 		_held_item_slot_selected = slot

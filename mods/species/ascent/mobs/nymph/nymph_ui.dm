@@ -1,16 +1,3 @@
-/* Commented out due to issues with interactions and combined intent flags.
-/obj/screen/intent/binary/ascent
-	icon = 'mods/species/ascent/icons/ui_intents.dmi'
-	screen_loc = ANYMPH_SCREEN_LOC_INTENT
-
-/decl/intent/harm/binary/ascent
-	icon = 'mods/species/ascent/icons/ui_intent_overlay.dmi'
-	uid = "intent_harm_binary_ascent"
-
-/decl/intent/help/binary/ascent
-	icon = 'mods/species/ascent/icons/ui_intent_overlay.dmi'
-	uid = "intent_help_binary_ascent"
-*/
 /obj/screen/ascent_nymph_molt
 	name = "molt"
 	icon = 'mods/species/ascent/icons/ui_molt.dmi'
