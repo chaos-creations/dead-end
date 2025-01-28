@@ -48,6 +48,19 @@
 		icon = intent.icon
 		icon_state = selected ? intent.icon_state : "[intent.icon_state]_off"
 
+/obj/screen/intent_button/MouseEntered(location, control, params)
+	if(intent && (intent.name || intent.desc))
+		openToolTip(user = usr, tip_src = src, params = params, content = intent.desc)
+	return ..()
+
+/obj/screen/intent_button/MouseDown()
+	closeToolTip(usr)
+	return ..()
+
+/obj/screen/intent_button/MouseExited()
+	closeToolTip(usr)
+	return ..()
+
 /obj/screen/intent
 	name                 = "intent"
 	icon                 = 'icons/screen/intents.dmi'
