@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/pump
 	name = "shotgun"
-	desc = "The mass-produced W-T Remmington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
+	desc = "The mass-produced W-T Remington 29x shotgun is a favourite of police and security forces on many worlds. Useful for sweeping alleys."
 	icon = 'icons/obj/guns/shotgun/pump.dmi'
 	icon_state = ICON_STATE_WORLD
 	max_shells = 4

@@ -35,7 +35,7 @@
 
 /obj/item/lockpick_roll
 	name                = "roll of lockpicks"
-	desc                = "A stitched roll used to store thin, strangely-shaped tools commonly used used to pick locks."
+	desc                = "A stitched roll used to store thin, strangely-shaped tools commonly used to pick locks."
 	icon                = 'icons/obj/items/lockpick_roll.dmi'
 	icon_state          = ICON_STATE_WORLD
 	material            = /decl/material/solid/organic/leather

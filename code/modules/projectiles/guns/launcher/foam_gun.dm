@@ -97,7 +97,7 @@
 //the projectile
 /obj/item/foam_dart
 	name = "foam dart"
-	desc = "An offical Jorf brand foam dart, for use only with offical Jorf brand foam dart launching products."
+	desc = "An official Jorf brand foam dart, for use only with official Jorf brand foam dart launching products."
 	icon = 'icons/obj/guns/foam/dart.dmi'
 	icon_state = "dart"
 	w_class = ITEM_SIZE_TINY
@@ -128,7 +128,7 @@
 //boxes of the projectile
 /obj/item/box/foam_darts
 	name = "box of foam darts"
-	desc = "It's a box of offical Jorf brand foam darts, for use only with offical Jorf brand products."
+	desc = "It's a box of official Jorf brand foam darts, for use only with official Jorf brand products."
 	icon = 'icons/obj/guns/foam/boxes.dmi'
 	icon_state = "dart_box"
 

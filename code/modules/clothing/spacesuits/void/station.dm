@@ -323,7 +323,7 @@
 
 //Atmospherics
 /obj/item/clothing/head/helmet/space/void/atmos/alt
-	name = "heavy duty atmospherics voidsuit helmet"
+	name = "heavy-duty atmospherics voidsuit helmet"
 	desc = "A voidsuit helmet plated with an expensive heat and radiation resistant ceramic."
 	icon = 'icons/clothing/spacesuit/void/atmos_alt/helmet.dmi'
 	armor = list(
@@ -336,7 +336,7 @@
 		)
 
 /obj/item/clothing/suit/space/void/atmos/alt
-	name = "heavy duty atmos voidsuit"
+	name = "heavy-duty atmos voidsuit"
 	desc = "An expensive voidsuit, rated to withstand extreme heat and even minor radiation without exceeding room temperature within."
 	icon = 'icons/clothing/spacesuit/void/atmos_alt/suit.dmi'
 	armor = list(
