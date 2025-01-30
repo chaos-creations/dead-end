@@ -1164,8 +1164,13 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/loadout_should_keep(obj/item/new_item, mob/wearer)
 	return type != new_item.type && !replaced_in_loadout
 
+/obj/item/dropped(mob/user, slot)
+	. = ..()
+	user?.clear_available_intents()
+
 /obj/item/equipped(mob/user, slot)
 	. = ..()
+	user?.clear_available_intents()
 	// delay for 1ds to allow the rest of the call stack to resolve
 	if(!QDELETED(src) && !QDELETED(user) && user.get_equipped_slot_for_item(src) == slot)
 		try_burn_wearer(user, slot, 1)
@@ -1296,3 +1301,6 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 		squash_item()
 		if(!QDELETED(src))
 			physically_destroyed()
+
+/obj/item/proc/get_provided_intents(mob/wielder)
+	return null

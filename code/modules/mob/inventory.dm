@@ -466,7 +466,8 @@
 	return
 
 /mob/proc/select_held_item_slot(var/slot)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	clear_available_intents()
 
 /mob/proc/get_inventory_slots()
 	return
