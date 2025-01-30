@@ -451,7 +451,7 @@
 /mob/proc/item_should_have_screen_presence(obj/item/item, slot)
 	if(!slot || !istype(hud_used))
 		return FALSE
-	if(hud_used.inventory_shown)
+	if(hud_used.is_inventory_shown())
 		return TRUE
 	var/datum/inventory_slot/inv_slot = get_inventory_slot_datum(slot)
 	return !(inv_slot?.can_be_hidden)

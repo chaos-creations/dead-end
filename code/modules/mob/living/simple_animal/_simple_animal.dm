@@ -12,6 +12,8 @@
 	icon_state = ICON_STATE_WORLD
 	buckle_pixel_shift = @"{'x':0,'y':0,'z':8}"
 
+	hud_used = /datum/hud/animal
+
 	move_intents = list(
 		/decl/move_intent/walk/animal,
 		/decl/move_intent/run/animal
@@ -274,13 +276,13 @@ var/global/list/simplemob_icon_bitflag_cache = list()
 			bodytemperature += ((environment.temperature - bodytemperature) / 5)
 
 	if(bodytemperature < minbodytemp)
-		SET_HUD_ALERT(src, /decl/hud_element/condition/fire, 2)
+		SET_HUD_ALERT(src, HUD_FIRE, 2)
 		take_damage(cold_damage_per_tick, BURN)
 	else if(bodytemperature > maxbodytemp)
-		SET_HUD_ALERT(src, /decl/hud_element/condition/fire, 1)
+		SET_HUD_ALERT(src, HUD_FIRE, 1)
 		take_damage(heat_damage_per_tick, BURN)
 	else
-		SET_HUD_ALERT(src, /decl/hud_element/condition/fire, 0)
+		SET_HUD_ALERT(src, HUD_FIRE, 0)
 
 	if(!atmos_suitable)
 		take_damage(unsuitable_atmos_damage)

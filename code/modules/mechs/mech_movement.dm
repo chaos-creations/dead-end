@@ -12,7 +12,7 @@
 		if(!isspaceturf(loc))
 			playsound(src.loc, mech_step_sound, 40, 1)
 		for(var/mob/pilot as anything in pilots)
-			pilot.up_hint?.update_icon()
+			pilot.refresh_hud_element(HUD_UP_HINT)
 
 //Inertia drift making us face direction makes exosuit flight a bit difficult, plus newtonian flight model yo
 /mob/living/exosuit/set_dir(ndir)

@@ -117,8 +117,6 @@
 
 		handle_leg_damage()
 		species.handle_post_move(src)
-		if(client)
-			up_hint.update_icon()
 
 /mob/living/human/proc/handle_leg_damage()
 	if(!can_feel_pain())

@@ -448,6 +448,10 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!should_do_hud_updates())
 		return FALSE
+
+	if(istype(hud_used))
+		hud_used.handle_life_hud_update()
+
 	handle_hud_icons()
 	handle_vision()
 	handle_low_light_vision()

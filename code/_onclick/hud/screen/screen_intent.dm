@@ -80,7 +80,7 @@
 	verbs.Cut()
 
 /obj/screen/intent/Destroy()
-	QDEL_NULL(intent_selectors)
+	QDEL_NULL_LIST(intent_selectors)
 	vis_contents.Cut()
 	return ..()
 
