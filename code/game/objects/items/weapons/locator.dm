@@ -1,15 +1,9 @@
-/* Teleportation devices.
- * Contains:
- *		Locator
- *		Hand-tele
- */
-
 /*
  * Locator
  */
 /obj/item/locator
 	name = "locator"
-	desc = "Used to track those with locater implants."
+	desc = "Used to track those with locator implants."
 	icon = 'icons/obj/items/device/locator.dmi'
 	icon_state = ICON_STATE_WORLD
 	var/temp = null
