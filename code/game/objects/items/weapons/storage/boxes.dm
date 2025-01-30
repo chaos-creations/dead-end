@@ -366,7 +366,7 @@
 
 /obj/item/box/animal_cubes/carp
 	name = "space carp cube box"
-	desc = "Drymate brand carp cubes. Allergen information: May contain pike"
+	desc = "Drymate brand carp cubes. Allergen information: May contain traces of pike."
 
 /obj/item/box/animal_cubes/carp/WillContain()
 	return list(/obj/item/food/animal_cube/wrapped/carp = 5)

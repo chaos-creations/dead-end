@@ -728,7 +728,7 @@
 		else if(prop.reagents.has_reagent(/decl/material/liquid/drink/milk/soymilk) && prop.reagents.has_reagent(/decl/material/liquid/drink/syrup/vanilla))
 			. = "soy London Fog"
 		else
-			. = "Earl Grey"
+			. = "Baron Grey"
 	. = ..(prop, .)
 
 //green tea

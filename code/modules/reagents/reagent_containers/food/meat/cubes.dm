@@ -52,7 +52,7 @@
 	growing = TRUE
 	visible_message(SPAN_NOTICE("\The [src] expands!"))
 	if(islist(spawn_type))
-		spawn_type = spawn_type[1]
+		spawn_type = pickweight(spawn_type)
 	var/mob/critter = new spawn_type
 	critter.dropInto(force_loc || loc)
 	qdel(src)
