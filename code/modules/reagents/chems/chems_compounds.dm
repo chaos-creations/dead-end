@@ -49,6 +49,14 @@
 	value = 0.1
 	uid = "chem_blackpepper"
 
+/decl/material/solid/cinnamon
+	name = "cinnamon"
+	lore_text = "A powder used to flavor food and drinks. Unpleasant to eat a full spoonful of."
+	taste_description = "cinnamon"
+	color = "#a34b0d"
+	value = 0.2
+	uid = "chem_cinnamon"
+
 /decl/material/liquid/enzyme
 	name = "universal enzyme"
 	uid = "chem_enzyme"
