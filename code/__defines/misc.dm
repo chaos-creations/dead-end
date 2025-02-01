@@ -142,6 +142,11 @@
 #define CONFIG_SERVER_JOIN_WHITELIST    3
 #define CONFIG_SERVER_CONNECT_WHITELIST 4
 
+// Coating name color config enums
+#define CONFIG_COATING_COLOR_NONE       1
+#define CONFIG_COATING_COLOR_MIXTURE    2
+#define CONFIG_COATING_COLOR_COMPONENTS 3
+
 // Location for server whitelist file to load from.
 #define CONFIG_SERVER_WHITELIST_FILE "config/server_whitelist.txt"
 
@@ -252,6 +257,7 @@
 
 //Inserts 'a' or 'an' before X in ways \a doesn't allow
 #define ADD_ARTICLE(X) "[(lowertext(X[1]) in global.vowels) ? "an" : "a"] [X]"
+#define ADD_ARTICLE_GENDER(X, GENDER) (GENDER == PLURAL ? "some [X]" : ADD_ARTICLE(X))
 
 //Request Console Department Types
 #define RC_ASSIST 1		//Request Assistance

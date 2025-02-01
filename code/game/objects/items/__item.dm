@@ -399,8 +399,12 @@
 	if(drying_wetness > 0 && drying_wetness != initial(drying_wetness))
 		desc_comp += "\The [src] is [get_dryness_text()]."
 
+	if(coating?.total_volume)
+		desc_comp += "It is covered in [coating.get_coated_name()]." // It is covered in dilute oily slimy bloody mud.
+
 	if(check_rights(R_DEBUG, 0, user))
 		to_chat(user, "\The [src] has a temperature of [temperature]K.")
+
 
 	return ..(user, distance, "", jointext(desc_comp, "<br/>"))
 
@@ -946,13 +950,10 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 	return 0 // Process Kill
 
 /obj/item/proc/get_examine_name()
-	. = name
-	if(coating?.total_volume)
-		. = SPAN_WARNING("<font color='[coating.get_color()]'>stained</font> [.]")
-	if(gender == PLURAL)
-		. = "some [.]"
-	else
-		. = "\a [.]"
+	var/examine_prefix = get_examine_prefix()
+	if(examine_prefix)
+		examine_prefix += " "
+	return ADD_ARTICLE_GENDER("[examine_prefix][name]", gender)
 
 /obj/item/proc/get_examine_line()
 	. = "[html_icon(src)] [get_examine_name()]"
@@ -1057,6 +1058,13 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 	if(!coating)
 		return
 	coating.remove_any(amount)
+	if(coating.total_volume <= MINIMUM_CHEMICAL_VOLUME)
+		clean(FALSE)
+
+/obj/item/proc/transfer_coating_to(atom/target, amount = 1, multiplier = 1, copy = 0, defer_update = FALSE, transferred_phases = (MAT_PHASE_LIQUID | MAT_PHASE_SOLID))
+	if(!coating)
+		return
+	coating.trans_to(target, amount, multiplier)
 	if(coating.total_volume <= MINIMUM_CHEMICAL_VOLUME)
 		clean(FALSE)
 
@@ -1304,3 +1312,11 @@ modules/mob/living/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/get_provided_intents(mob/wielder)
 	return null
+
+/obj/item/get_examine_prefix()
+	if(coating?.total_volume)
+		var/coating_string = coating.get_coated_adjectives() // component coloring is handled in here
+		if(get_config_value(/decl/config/enum/colored_coating_names) == CONFIG_COATING_COLOR_MIXTURE)
+			coating_string = FONT_COLORED(coating.get_color(), coating_string)
+		return coating_string
+	return ..()
