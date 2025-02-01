@@ -305,7 +305,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 
 	var/scent //refer to _scent.dm
 	var/scent_intensity = /decl/scent_intensity/normal
-	var/scent_descriptor = SCENT_DESC_SMELL
+	var/scent_descriptor = "smell"
 	var/scent_range = 1
 
 	var/list/neutron_interactions // Associative List of potential neutron interactions for the material to undergo, corresponding to the ideal

@@ -1,6 +1,6 @@
-#define SCENT_DESC_ODOR        "odour"
-#define SCENT_DESC_SMELL       "smell"
-#define SCENT_DESC_FRAGRANCE   "fragrance"
+var/global/const/SCENT_DESC_ODOR      = "odour"
+var/global/const/SCENT_DESC_SMELL     = "smell"
+var/global/const/SCENT_DESC_FRAGRANCE = "fragrance"
 
 /*****
 Scent intensity
@@ -43,7 +43,7 @@ Scent intensity
 
 	var/scent = "something"
 	var/decl/scent_intensity/intensity = /decl/scent_intensity
-	var/descriptor = SCENT_DESC_SMELL //unambiguous descriptor of smell; food is generally good, sewage is generally bad. how 'nice' the scent is
+	var/descriptor = "smell" //unambiguous descriptor of smell; food is generally good, sewage is generally bad. how 'nice' the scent is
 	var/range = 1 //range in tiles
 
 /datum/extension/scent/New()
