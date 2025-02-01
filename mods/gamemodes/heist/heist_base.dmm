@@ -112,7 +112,7 @@
 /turf/unsimulated/floor/plating,
 /area/map_template/syndicate_mothership/raider_base)
 "aA" = (
-/obj/structure/aliumizer,
+/obj/abstract/modpack_compat/aliumizer,
 /turf/unsimulated/floor/asteroid,
 /area/map_template/syndicate_mothership/raider_base)
 "aB" = (
