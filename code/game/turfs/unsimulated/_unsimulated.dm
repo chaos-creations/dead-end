@@ -29,3 +29,9 @@
 
 /turf/unsimulated/get_movable_alpha_mask_state(atom/movable/mover)
 	return null
+
+// For the purposes of spacemove/spacedrift.
+/turf/unsimulated/is_floor()
+	return !density
+/turf/unsimulated/is_wall()
+	return !is_floor()

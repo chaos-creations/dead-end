@@ -647,7 +647,7 @@ default behaviour is:
 	set category = "IC"
 
 	// No posture, no adjustment.
-	if(length(get_available_postures()) <= 1 || incapacitated(INCAPACITATION_KNOCKOUT) || !canClick())
+	if(length(get_available_postures()) <= 1 || incapacitated(INCAPACITATION_KNOCKDOWN) || !canClick())
 		return
 
 	var/list/selectable_postures = get_selectable_postures()
@@ -668,18 +668,18 @@ default behaviour is:
 		selected_posture = selectable_postures[1]
 	else
 		selected_posture = input(src, "Which posture do you wish to adopt?", "Change Posture", current_posture) as null|anything in selectable_postures
-		if(!selected_posture || length(get_available_postures()) <= 1 || incapacitated(INCAPACITATION_KNOCKOUT) || !canClick())
+		if(!selected_posture || length(get_available_postures()) <= 1 || incapacitated(INCAPACITATION_KNOCKDOWN) || !canClick())
 			return
 		if(current_posture == selected_posture || !(selected_posture in get_selectable_postures()))
 			return
 
 	setClickCooldown(3)
-	to_chat(src, SPAN_NOTICE("You are now [selected_posture.posture_change_message]."))
 	if(current_posture.prone && !selected_posture.prone)
-		if(!do_after(src, 2 SECONDS, src, incapacitation_flags = ~INCAPACITATION_FORCELYING))
+		if(!do_after(src, 2 SECONDS, src, incapacitation_flags = INCAPACITATION_KNOCKDOWN))
 			return
 		if(current_posture == selected_posture || !(selected_posture in get_selectable_postures()))
 			return
+	to_chat(src, SPAN_NOTICE("You are now [selected_posture.posture_change_message]."))
 	set_posture(selected_posture)
 
 //called when the mob receives a bright flash
@@ -700,26 +700,12 @@ default behaviour is:
 	. = ..() || is_floating
 
 /mob/living/proc/slip(slipped_on, stun_duration = 8)
-
-	if(immune_to_floor_hazards())
-		return FALSE
-
-	var/decl/species/my_species = get_species()
-	if(my_species?.check_no_slip(src))
-		return FALSE
-
-	var/obj/item/shoes = get_equipped_item(slot_shoes_str)
-	if(shoes && (shoes.item_flags & ITEM_FLAG_NOSLIP))
-		return FALSE
-
-	if(has_gravity() && !buckled && !current_posture?.prone)
+	if(can_slip())
 		to_chat(src, SPAN_DANGER("You slipped on [slipped_on]!"))
 		playsound(loc, 'sound/misc/slip.ogg', 50, 1, -3)
 		SET_STATUS_MAX(src, STAT_WEAK, stun_duration)
 		return TRUE
-
 	return FALSE
-
 
 /mob/living/human/canUnEquip(obj/item/I)
 	. = ..() && !(I in get_organs())
@@ -1183,13 +1169,14 @@ default behaviour is:
 		client.screen += hud_used.hide_actions_toggle
 
 /mob/living/handle_fall_effect(var/turf/landing)
-	..()
-	if(istype(landing) && !landing.is_open())
-		apply_fall_damage(landing)
-		if(client)
-			var/area/A = get_area(landing)
-			if(A)
-				A.alert_on_fall(src)
+	if(!(. = ..()) || !istype(landing))
+		return
+	apply_fall_damage(landing)
+	if(!client)
+		return
+	var/area/landing_area = get_area(landing)
+	if(landing_area)
+		landing_area.alert_on_fall(src)
 
 /mob/living/proc/apply_fall_damage(var/turf/landing)
 	take_damage(rand(max(1, ceil(mob_size * 0.33)), max(1, ceil(mob_size * 0.66))) * get_fall_height())

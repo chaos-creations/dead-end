@@ -382,5 +382,11 @@
 #define CRAYON_DRAW_LETTER   "letter"
 #define CRAYON_DRAW_ARROW    "arrow"
 
+// Enum for results of is_space_movement_permitted()
+#define SPACE_MOVE_SUPPORTED (-1)
+#define SPACE_MOVE_FORBIDDEN   0
+#define SPACE_MOVE_PERMITTED   1
+
 // Default UI style applied to client prefs.
 #define DEFAULT_UI_STYLE /decl/ui_style/midnight
+

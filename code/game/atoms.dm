@@ -1005,8 +1005,7 @@
 	return required_dexterity
 
 /atom/proc/immune_to_floor_hazards()
-	return !simulated
-
+	return !simulated || !has_gravity()
 /// The punctuation used for the "That's an X." string.
 /atom/proc/get_examine_punctuation()
 	// Could theoretically check if reagents in a coating are 'dangerous' or 'suspicious' (blood, acid, etc)
