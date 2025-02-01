@@ -148,7 +148,7 @@
 	var/obj/item/organ/internal/eyes = GET_INTERNAL_ORGAN(target, BP_EYES)
 	var/decl/pronouns/pronouns = user.get_pronouns()
 	if(eyes)
-		eyes.take_internal_damage(rand(3,4), 1)
+		eyes.take_damage(rand(3,4), 1)
 		user.visible_message(SPAN_DANGER("\The [user] jams [pronouns.his] [eye_attack_text] into \the [target]'s [eyes.name]!"))
 		if(eyes.can_feel_pain())
 			to_chat(target, SPAN_DANGER("You experience immense pain as [eye_attack_text_victim] are jammed into your [eyes.name]!"))

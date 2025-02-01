@@ -13,7 +13,7 @@
 
 /obj/item/organ/internal/eyes/insectoid/serpentid/additional_flash_effects(var/intensity)
 	if(!eyes_shielded)
-		take_internal_damage(max(0, 4 * (intensity)))
+		take_damage(max(0, 4 * (intensity)))
 		return 1
 	else
 		return -1
@@ -118,7 +118,7 @@
 				to_chat(owner, "<span class='warning'>Your body is barely functioning and is starting to shut down.</span>")
 				SET_STATUS_MAX(owner, STAT_PARA, 2)
 				var/obj/item/organ/internal/I = pick(owner.internal_organs)
-				I.take_internal_damage(5)
+				I.take_damage(5)
 	..()
 
 /obj/item/organ/external/chest/insectoid/serpentid

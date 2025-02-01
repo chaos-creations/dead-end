@@ -117,25 +117,25 @@
 	if(damage_threshold_count > 0)
 		damage_threshold_value = round(max_damage / damage_threshold_count)
 
-/obj/item/organ/internal/take_general_damage(var/amount, var/silent = FALSE)
-	take_internal_damage(amount, silent)
+/obj/item/organ/internal/take_damage(damage, damage_type = BRUTE, damage_flags, inflicter, armor_pen = 0, silent, do_update_health)
 
-/obj/item/organ/internal/proc/take_internal_damage(amount, var/silent=0)
+	if(!owner)
+		return ..()
+
 	if(BP_IS_PROSTHETIC(src))
-		damage = clamp(src.damage + (amount * 0.8), 0, max_damage)
+		damage = clamp(src.damage + (damage * 0.8), 0, max_damage)
 	else
-		damage = clamp(src.damage + amount, 0, max_damage)
+		damage = clamp(src.damage + damage, 0, max_damage)
 
-		//only show this if the organ is not robotic
-		if(owner && can_feel_pain() && parent_organ && (amount > 5 || prob(10)))
-			var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
-			if(parent && !silent)
-				var/degree = ""
-				if(is_bruised())
-					degree = " a lot"
-				if(damage < 5)
-					degree = " a bit"
-				owner.custom_pain("Something inside your [parent.name] hurts[degree].", amount, affecting = parent)
+	if(can_feel_pain() && parent_organ && (damage > 5 || prob(10)))
+		var/obj/item/organ/external/parent = GET_EXTERNAL_ORGAN(owner, parent_organ)
+		if(parent && !silent)
+			var/degree = ""
+			if(is_bruised())
+				degree = " a lot"
+			if(damage < 5)
+				degree = " a bit"
+				owner.custom_pain("Something inside your [parent.name] hurts[degree].", damage, affecting = parent)
 
 /obj/item/organ/internal/proc/get_visible_state()
 	if(damage > max_damage)
@@ -234,11 +234,11 @@
 		return
 	switch (severity)
 		if (1)
-			take_internal_damage(16)
+			take_damage(16)
 		if (2)
-			take_internal_damage(9)
+			take_damage(9)
 		if (3)
-			take_internal_damage(6.5)
+			take_damage(6.5)
 
 /obj/item/organ/internal/on_update_icon()
 	. = ..()

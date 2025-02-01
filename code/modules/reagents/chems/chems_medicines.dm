@@ -298,7 +298,7 @@
 			var/mob/living/human/H = M
 			if(H.resuscitate())
 				var/obj/item/organ/internal/heart = GET_INTERNAL_ORGAN(H, BP_HEART)
-				heart.take_internal_damage(heart.max_damage * 0.15)
+				heart.take_damage(heart.max_damage * 0.15)
 
 /decl/material/liquid/stabilizer
 	name = "stabilizer"
@@ -401,7 +401,7 @@
 /decl/material/liquid/clotting_agent/affect_overdose(mob/living/victim, total_dose)
 	var/obj/item/organ/internal/heart = GET_INTERNAL_ORGAN(victim, BP_HEART)
 	if(heart && prob(25))
-		heart.take_general_damage(rand(1,3))
+		heart.take_damage(rand(1,3))
 	return ..()
 
 #define DETOXIFIER_EFFECTIVENESS 6 // 6u of opiates removed per 1u of detoxifier; 5u is enough to remove 30u, i.e. an overdose

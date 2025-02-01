@@ -453,7 +453,7 @@
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."),       \
 			SPAN_DANGER("Your movement jostles [O] in your [organ.name] painfully."))
 		custom_pain(msg,40,affecting = organ)
-	organ.take_external_damage(rand(1,3) + O.w_class, DAM_EDGE, 0)
+	organ.take_damage(rand(1,3) + O.w_class, damage_flags = DAM_EDGE)
 
 /mob/proc/set_bodytype(var/decl/bodytype/new_bodytype)
 	return

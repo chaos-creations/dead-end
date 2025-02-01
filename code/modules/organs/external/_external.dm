@@ -202,7 +202,7 @@
 
 	if(owner && burn_damage)
 		owner.custom_pain("Something inside your [src] burns a [severity < 2 ? "bit" : "lot"]!", power * 15) //robotic organs won't feel it anyway
-		take_external_damage(0, burn_damage, 0, used_weapon = "Hot metal")
+		take_damage(burn_damage, BURN, inflicter = "Hot metal")
 		check_pain_disarm()
 
 	if(owner && (limb_flags & ORGAN_FLAG_CAN_STAND))
@@ -1506,7 +1506,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(LAZYLEN(internal_organs) && prob(brute_dam + force))
 		owner.custom_pain("A piece of bone in your [encased ? encased : name] moves painfully!", 50, affecting = src)
 		var/obj/item/organ/internal/internal_organ = pick(internal_organs)
-		internal_organ.take_internal_damage(rand(3,5))
+		internal_organ.take_damage(rand(3,5))
 
 /obj/item/organ/external/proc/jointlock(mob/attacker)
 	if(!can_feel_pain())

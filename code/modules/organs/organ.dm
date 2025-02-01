@@ -227,7 +227,7 @@
 				blood_splatter(get_turf(src), src, 1)
 			remove_any_reagents(0.1)
 		if(get_config_value(/decl/config/toggle/health_organs_decay))
-			take_general_damage(rand(1,3))
+			take_damage(rand(1,3))
 		germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_TWO)
 			germ_level += rand(2,6)
@@ -309,7 +309,7 @@
 			parent.germ_level++
 
 		if (prob(3))	//about once every 30 seconds
-			take_general_damage(1,silent=prob(30))
+			take_damage(1, silent =prob(30))
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -381,8 +381,10 @@
 		germ_level -= round(2 * antibiotics)
 	germ_level = max(0, germ_level)
 
-/obj/item/organ/proc/take_general_damage(var/amount, var/silent = FALSE)
-	CRASH("Not Implemented")
+// Bypass the atom damage system when inside an owner, as organs implement their own health handling etc.
+/obj/item/organ/take_damage(damage, damage_type = BRUTE, damage_flags, inflicter, armor_pen = 0, silent, do_update_health)
+	if(!owner)
+		return ..()
 
 /obj/item/organ/proc/heal_damage(amount)
 	if(can_recover())

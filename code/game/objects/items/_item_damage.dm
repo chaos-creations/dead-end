@@ -133,7 +133,7 @@
 					to_chat(M, SPAN_WARNING("You go blind!"))
 
 		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, eyes.parent_organ)
-		affecting.take_external_damage(7)
+		affecting.take_damage(7)
 	else
 		M.take_organ_damage(7)
 	SET_STATUS_MAX(M, STAT_BLURRY, rand(3,4))

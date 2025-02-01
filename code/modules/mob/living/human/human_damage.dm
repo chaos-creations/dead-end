@@ -15,7 +15,7 @@
 	if(!(status_flags & GODMODE) && should_have_organ(BP_BRAIN))
 		var/obj/item/organ/internal/sponge = GET_INTERNAL_ORGAN(src, BP_BRAIN)
 		if(sponge)
-			sponge.take_internal_damage(amount)
+			sponge.take_damage(amount)
 	..()
 
 /mob/living/human/setBrainLoss(var/amount)
@@ -213,10 +213,10 @@
 		else
 			var/cap_dam = I.max_damage - I.damage
 			if(amount >= cap_dam)
-				I.take_internal_damage(cap_dam, silent=TRUE)
+				I.take_damage(cap_dam, silent=TRUE)
 				amount -= cap_dam
 			else
-				I.take_internal_damage(amount, silent=TRUE)
+				I.take_damage(amount, silent=TRUE)
 				amount = 0
 
 	if(do_update_health)
@@ -272,9 +272,14 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(!length(parts))
 		return
 	var/obj/item/organ/external/picked = pick(parts)
-	if(picked.take_external_damage(brute, burn, override_droplimb = override_droplimb))
+	. = FALSE
+	if(brute && picked.take_damage(brute, override_droplimb = override_droplimb, do_update_health = FALSE))
+		. = TRUE
+	if(burn && picked.take_damage(burn, BURN, override_droplimb = override_droplimb, do_update_health = FALSE))
+		. = TRUE
+	if(.)
+		update_health()
 		BITSET(hud_updateflag, HEALTH_HUD)
-	update_health()
 
 //Heal MANY external organs, in random order
 /mob/living/human/heal_overall_damage(var/brute, var/burn)
@@ -381,15 +386,12 @@ This function restores all organs.
 	var/datum/wound/created_wound
 	damageoverlaytemp = 20
 	switch(damagetype)
-		if(BRUTE)
-			created_wound = organ.take_external_damage(damage, 0, damage_flags, used_weapon)
-		if(BURN)
-			created_wound = organ.take_external_damage(0, damage, damage_flags, used_weapon)
+		if(BRUTE, BURN)
+			created_wound = organ.take_damage(damage, damagetype, damage_flags = damage_flags, inflicter = used_weapon, do_update_health = FALSE)
 		if(PAIN)
 			organ.add_pain(damage)
 		if(CLONE)
 			organ.add_genetic_damage(damage)
-
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 	update_health()
 	BITSET(hud_updateflag, HEALTH_HUD)

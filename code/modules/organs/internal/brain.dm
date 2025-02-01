@@ -140,12 +140,12 @@
 							to_chat(owner, "<span class='warning'>You feel [pick("dizzy","woozy","faint")]...</span>")
 						damprob = stability_effect ? 30 : 60
 						if(!past_damage_threshold(2) && prob(damprob))
-							take_internal_damage(1)
+							take_damage(1)
 					if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 						SET_STATUS_MAX(owner, STAT_BLURRY, 6)
 						damprob = stability_effect ? 40 : 80
 						if(!past_damage_threshold(4) && prob(damprob))
-							take_internal_damage(1)
+							take_damage(1)
 						if(!HAS_STATUS(owner, STAT_PARA) && prob(10))
 							SET_STATUS_MAX(owner, STAT_PARA, rand(1,3))
 							to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
@@ -153,7 +153,7 @@
 						SET_STATUS_MAX(owner, STAT_BLURRY, 6)
 						damprob = stability_effect ? 60 : 100
 						if(!past_damage_threshold(6) && prob(damprob))
-							take_internal_damage(1)
+							take_damage(1)
 						if(!HAS_STATUS(owner, STAT_PARA) && prob(15))
 							SET_STATUS_MAX(owner, STAT_PARA, rand(3,5))
 							to_chat(owner, "<span class='warning'>You feel extremely [pick("dizzy","woozy","faint")]...</span>")
@@ -161,14 +161,14 @@
 						SET_STATUS_MAX(owner, STAT_BLURRY, 6)
 						damprob = stability_effect ? 80 : 100
 						if(prob(damprob))
-							take_internal_damage(1)
+							take_damage(1)
 						if(prob(damprob))
-							take_internal_damage(1)
+							take_damage(1)
 	..()
 
-/obj/item/organ/internal/brain/take_internal_damage(var/damage, var/silent)
-	..()
-	if(damage >= 10) //This probably won't be triggered by oxyloss or mercury. Probably.
+/obj/item/organ/internal/brain/take_damage(damage, damage_type = BRUTE, damage_flags, inflicter, armor_pen = 0, silent, do_update_health)
+	. = ..()
+	if(owner && damage >= 10) //This probably won't be triggered by oxyloss or mercury. Probably.
 		var/damage_secondary = damage * 0.20
 		owner.flash_eyes()
 		SET_STATUS_MAX(owner, STAT_BLURRY, damage_secondary)

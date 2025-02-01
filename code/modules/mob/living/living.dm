@@ -1665,7 +1665,7 @@ default behaviour is:
 		for(var/datum/wound/wound in affected.wounds)
 			LAZYREMOVE(wound.embedded_objects, implant)
 		if(!surgical_removal)
-			affected.take_external_damage((implant.w_class * 3), 0, DAM_EDGE, "Embedded object extraction")
+			affected.take_damage((implant.w_class * 3), damage_flags = DAM_EDGE, inflicter = "Embedded object extraction")
 			if(!BP_IS_PROSTHETIC(affected) && prob(implant.w_class * 5) && affected.sever_artery()) //I'M SO ANEMIC I COULD JUST -DIE-.
 				custom_pain("Something tears wetly in your [affected.name] as [implant] is pulled free!", 50, affecting = affected)
 
@@ -1762,7 +1762,7 @@ default behaviour is:
 	playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 	var/obj/item/organ/external/organ = GET_EXTERNAL_ORGAN(src, BP_CHEST)
 	if(istype(organ))
-		organ.take_external_damage(d, 0)
+		organ.take_damage(d)
 	else
 		take_organ_damage(d)
 	if(prob(get_damage(BRUTE) - 50))

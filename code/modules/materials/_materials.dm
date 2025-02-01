@@ -877,10 +877,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 					var/can_damage = I.max_damage - I.damage
 					if(can_damage > 0)
 						if(organ_damage > can_damage)
-							I.take_internal_damage(can_damage, silent=TRUE)
+							I.take_damage(can_damage, silent=TRUE)
 							dam -= can_damage
 						else
-							I.take_internal_damage(organ_damage, silent=TRUE)
+							I.take_damage(organ_damage, silent=TRUE)
 							dam = 0
 		if(dam > 0)
 			M.take_damage(toxicity_targets_organ ? (dam * 0.75) : dam, TOX)

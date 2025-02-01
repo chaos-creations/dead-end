@@ -395,7 +395,7 @@
 	for(var/internal in affected.internal_organs)
 		var/obj/item/organ/internal/I = internal
 		if(I)
-			I.take_internal_damage(rand(3,5))
+			I.take_damage(rand(3,5))
 	..()
 
 //////////////////////////////////////////////////////////////////

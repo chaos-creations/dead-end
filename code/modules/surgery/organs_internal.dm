@@ -82,10 +82,10 @@
 	else
 		dam_amt = 5
 		target.take_damage(10, TOX)
-		affected.take_external_damage(dam_amt, 0, (DAM_SHARP|DAM_EDGE), used_weapon = tool)
+		affected.take_damage(dam_amt, damage_flags = (DAM_SHARP|DAM_EDGE), inflicter = tool)
 	for(var/obj/item/organ/internal/I in affected.internal_organs)
 		if(I && I.damage > 0 && !BP_IS_PROSTHETIC(I) && (I.surface_accessible || affected.how_open() >= (affected.encased ? SURGERY_ENCASED : SURGERY_RETRACTED)))
-			I.take_internal_damage(dam_amt)
+			I.take_damage(dam_amt)
 	..()
 
 //////////////////////////////////////////////////////////////////
@@ -135,7 +135,7 @@
 	if(affected)
 		user.visible_message("<span class='warning'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>")
-		affected.take_external_damage(rand(30,50), 0, (DAM_SHARP|DAM_EDGE), used_weapon = tool)
+		affected.take_damage(rand(30,50), damage_flags = (DAM_SHARP|DAM_EDGE), inflicter = tool)
 	..()
 
 //////////////////////////////////////////////////////////////////
@@ -202,7 +202,7 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>")
-	affected.take_external_damage(20, used_weapon = tool)
+	affected.take_damage(20, inflicter = tool)
 	..()
 
 //////////////////////////////////////////////////////////////////
@@ -299,7 +299,7 @@
 	"<span class='warning'>Your hand slips, damaging \the [tool]!</span>")
 	var/obj/item/organ/internal/I = tool
 	if(istype(I))
-		I.take_internal_damage(rand(3,5))
+		I.take_damage(rand(3,5))
 	..()
 
 //////////////////////////////////////////////////////////////////
@@ -391,5 +391,5 @@
 	var/obj/item/organ/external/affected = GET_EXTERNAL_ORGAN(target, target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging the flesh in [target]'s [affected.name] with \the [tool]!</span>")
-	affected.take_external_damage(20, used_weapon = tool)
+	affected.take_damage(20, inflicter = tool)
 	..()

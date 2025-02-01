@@ -250,7 +250,7 @@
 			if(QDELETED(O) || !(O.owner == src))
 				continue
 			if(O.damage + (LOW_PRESSURE_DAMAGE) < O.min_broken_damage) //vacuum does not break bones
-				O.take_external_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+				O.take_damage(LOW_PRESSURE_DAMAGE, inflicter = "Low Pressure")
 		if(getOxyLossPercent() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
 			take_damage(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, OXY, roughly twenty seconds
 		SET_HUD_ALERT(src, HUD_PRESSURE, -2)

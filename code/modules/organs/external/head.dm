@@ -99,7 +99,7 @@
 	. = ..()
 	can_intake_reagents = !(bodytype.body_flags & BODY_FLAG_NO_EAT)
 
-/obj/item/organ/external/head/take_external_damage(brute, burn, damage_flags, used_weapon, override_droplimb)
+/obj/item/organ/external/head/take_damage(damage, damage_type, damage_flags, inflicter, armor_pen, silent, do_update_health, override_droplimb)
 	. = ..()
 	if (!(status & ORGAN_DISFIGURED))
 		if (brute_dam > 40)

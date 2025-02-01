@@ -51,7 +51,7 @@
 			owner.take_damage(0.5 * max(2 - filter_effect, TOX, 0) * (alcotox + 0.5 * alco))
 
 	if(alcotox)
-		take_internal_damage(alcotox, prob(90)) // Chance to warn them
+		take_damage(alcotox, prob(90)) // Chance to warn them
 
 	//Blood regeneration if there is some space
 	owner.regenerate_blood(0.1 + GET_CHEMICAL_EFFECT(owner, CE_BLOODRESTORE))
