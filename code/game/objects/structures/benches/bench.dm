@@ -1,3 +1,4 @@
+// These are benches with backs. For backless benches that can't be buckled to, check for /obj/structure/table/bench.
 /obj/structure/bed/chair/bench
 	name = "bench"
 	desc = "A simple slatted bench."
@@ -112,43 +113,3 @@
 /obj/structure/bed/chair/bench/ebony
 	color = WOOD_COLOR_BLACK
 	material = /decl/material/solid/organic/wood/ebony
-
-/obj/structure/bed/chair/bench/pew
-	name = "pew"
-	desc = "A long bench with a backboard, commonly found in places of worship, courtrooms and so on. Not known for being particularly comfortable."
-	icon = 'icons/obj/structures/pews.dmi'
-	icon_state = "pew_standing"
-	base_icon = "pew"
-
-/obj/structure/bed/chair/bench/pew/get_material_icon()
-	return material?.pew_icon
-
-/obj/structure/bed/chair/bench/pew/single
-	name = "backed chair"
-	desc = "A tall chair with a sturdy back. Not very comfortable."
-	base_icon = "pew_standing"
-	connect_neighbors = FALSE
-
-/obj/structure/bed/chair/bench/pew/mahogany
-	color    = /decl/material/solid/organic/wood/mahogany::color
-	material = /decl/material/solid/organic/wood/mahogany
-
-/obj/structure/bed/chair/bench/pew/ebony
-	color    = /decl/material/solid/organic/wood/ebony::color
-	material = /decl/material/solid/organic/wood/ebony
-
-/obj/structure/bed/chair/bench/lounge
-	name       = "lounge"
-	desc       = "An elegant lounge, perfect for reclining on."
-	icon       = 'icons/obj/structures/lounge.dmi'
-	icon_state = "lounge_standing"
-	base_icon  = "lounge"
-
-/obj/structure/bed/chair/bench/lounge/get_material_icon()
-	return icon
-
-/obj/structure/bed/chair/bench/lounge/mapped
-	color          = /decl/material/solid/organic/wood/mahogany::color
-	material       = /decl/material/solid/organic/wood/mahogany
-	reinf_material = /decl/material/solid/organic/cloth
-	padding_color  = COLOR_RED_GRAY
