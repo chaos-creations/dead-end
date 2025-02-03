@@ -2,7 +2,6 @@
 // TODO by end of Q2 2025: Repath /obj/structure/bed/chair to just /obj/structure/chair.
 // Remaining steps:
 // - Move padding interactions and padding_color var onto an extension
-// - Allow /obj/structure/grab_attack to handle buckling
 /obj/structure/bed
 	name = "bed"
 	desc = "A raised, padded platform for sleeping on. This one has straps for ensuring restful snoozing in microgravity."
@@ -125,15 +124,6 @@
 			playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 			remove_padding()
 		return TRUE
-
-/obj/structure/bed/grab_attack(obj/item/grab/grab, mob/user)
-	var/mob/living/victim = grab.get_affecting_mob()
-	if(istype(victim) && istype(user))
-		user.visible_message(SPAN_NOTICE("\The [user] attempts to put \the [victim] onto \the [src]!"))
-		if(do_after(user, 2 SECONDS, src) && !QDELETED(victim) && !QDELETED(user) && !QDELETED(grab) && user_buckle_mob(victim, user))
-			qdel(grab)
-		return TRUE
-	return ..()
 
 /obj/structure/bed/proc/add_padding(var/padding_type, var/new_padding_color)
 	reinf_material = GET_DECL(padding_type)
