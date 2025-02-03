@@ -78,7 +78,7 @@
 
 	if(breath_fail_ratio < 0.25 && oxygenated)
 		SET_HUD_ALERT(H, HUD_OXY, 0)
-	if(breath_fail_ratio >= 0.25 && (damage || world.time > last_successful_breath + 2 MINUTES))
+	if(breath_fail_ratio >= 0.25 && (_organ_damage || world.time > last_successful_breath + 2 MINUTES))
 		H.take_damage(HUMAN_MAX_OXYLOSS * breath_fail_ratio, OXY)
 		if(oxygenated)
 			SET_HUD_ALERT(H, HUD_OXY, 1)

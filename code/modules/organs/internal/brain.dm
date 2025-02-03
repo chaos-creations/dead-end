@@ -99,7 +99,7 @@
 	alert(owner, "You have taken massive brain damage! You will not be able to remember the events leading up to your injury.", "Brain Damaged")
 
 /obj/item/organ/internal/brain/organ_can_heal()
-	return (damage && owner && GET_CHEMICAL_EFFECT(owner, CE_BRAIN_REGEN) > 0) || ..()
+	return (_organ_damage && owner && GET_CHEMICAL_EFFECT(owner, CE_BRAIN_REGEN) > 0) || ..()
 
 /obj/item/organ/internal/brain/has_limited_healing()
 	return (!owner || GET_CHEMICAL_EFFECT(owner, CE_BRAIN_REGEN) <= 0) && ..()
@@ -112,7 +112,7 @@
 /obj/item/organ/internal/brain/Process()
 	if(owner)
 
-		if(damage < (max_damage / 4))
+		if(_organ_damage < (max_damage / 4))
 			should_announce_brain_damage = TRUE
 
 		handle_disabilities()
@@ -203,7 +203,7 @@
 /obj/item/organ/internal/brain/handle_damage_effects()
 	..()
 
-	if(damage >= round(max_damage / 2) && should_announce_brain_damage)
+	if(_organ_damage >= round(max_damage / 2) && should_announce_brain_damage)
 		handle_severe_damage()
 
 	if(!BP_IS_PROSTHETIC(src) && prob(1))
@@ -212,10 +212,10 @@
 		to_chat(owner, "<span class='warning'>It becomes hard to see for some reason.</span>")
 		owner.set_status(STAT_BLURRY, 10)
 	var/held = owner.get_active_held_item()
-	if(damage >= 0.5*max_damage && prob(1) && held)
+	if(_organ_damage >= 0.5*max_damage && prob(1) && held)
 		to_chat(owner, "<span class='danger'>Your hand won't respond properly, and you drop what you are holding!</span>")
 		owner.try_unequip(held)
-	if(damage >= 0.6*max_damage)
+	if(_organ_damage >= 0.6*max_damage)
 		SET_STATUS_MAX(owner, STAT_SLUR, 2)
 	if(is_broken())
 		if(!owner.current_posture.prone)
@@ -226,8 +226,8 @@
 	var/blood_volume = owner.get_blood_oxygenation()
 	if(blood_volume < BLOOD_VOLUME_SURVIVE)
 		to_chat(user, SPAN_DANGER("Parts of \the [src] didn't survive the procedure due to lack of air supply!"))
-		set_max_damage(floor(max_damage - 0.25*damage))
-	heal_damage(damage)
+		set_max_damage(floor(max_damage - 0.25*_organ_damage))
+	heal_damage(_organ_damage)
 
 /obj/item/organ/internal/brain/die()
 	if(istype(_brainmob) && _brainmob.stat != DEAD)

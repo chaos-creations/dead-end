@@ -914,7 +914,7 @@
 	..()
 	if(should_have_organ(BP_STOMACH))
 		var/obj/item/organ/internal/stomach = GET_INTERNAL_ORGAN(src, BP_STOMACH)
-		if(!stomach || stomach.is_broken() || (stomach.is_bruised() && prob(stomach.damage)))
+		if(!stomach || stomach.is_broken() || (stomach.is_bruised() && prob(stomach.get_organ_damage())))
 			if(should_have_organ(BP_HEART))
 				vessel.trans_to_obj(vomit, 5)
 			else

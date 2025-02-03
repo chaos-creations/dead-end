@@ -29,7 +29,7 @@
 		owner.vomit()
 
 	//Detox can heal small amounts of damage
-	if (damage < max_damage && !GET_CHEMICAL_EFFECT(owner, CE_TOXIN))
+	if (_organ_damage < max_damage && !GET_CHEMICAL_EFFECT(owner, CE_TOXIN))
 		heal_damage(0.2 * GET_CHEMICAL_EFFECT(owner, CE_ANTITOX))
 
 	var/alco = GET_CHEMICAL_EFFECT(owner, CE_ALCOHOL)

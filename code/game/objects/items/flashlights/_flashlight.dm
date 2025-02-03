@@ -148,7 +148,7 @@
 			return
 		if(H.has_genetic_condition(GENE_COND_XRAY))
 			to_chat(user, SPAN_NOTICE("\The [H]'s pupils give an eerie glow!"))
-		if(vision.damage)
+		if(vision.get_organ_damage())
 			to_chat(user, SPAN_WARNING("There's visible damage to [H]'s [vision.name]!"))
 		else if(HAS_STATUS(H, STAT_BLURRY))
 			to_chat(user, SPAN_NOTICE("\The [H]'s pupils react slower than normally."))

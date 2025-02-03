@@ -23,7 +23,7 @@
 	if(should_have_organ(BP_BRAIN))
 		var/obj/item/organ/internal/sponge = GET_INTERNAL_ORGAN(src, BP_BRAIN)
 		if(sponge)
-			sponge.damage = min(max(amount, 0),sponge.species.total_health)
+			sponge.set_organ_damage(amount)
 			update_health()
 
 /mob/living/human/getBrainLoss()
@@ -33,10 +33,8 @@
 		if(sponge)
 			if(sponge.status & ORGAN_DEAD)
 				return sponge.species.total_health
-			else
-				return sponge.damage
-		else
-			return species.total_health
+			return sponge.get_organ_damage()
+		return species.total_health
 	return 0
 
 //Straight pain values, not affected by painkillers etc
@@ -199,24 +197,24 @@
 		pick_organs -= brain
 		pick_organs += brain
 
-	for(var/internal in pick_organs)
-		var/obj/item/organ/internal/I = internal
+	for(var/obj/item/organ/internal/organ as anything in pick_organs)
 		if(amount <= 0)
 			break
+		var/organ_damage = organ.get_organ_damage()
 		if(heal)
-			if(I.damage < amount)
-				amount -= I.damage
-				I.damage = 0
+			if(organ_damage < amount)
+				amount -= organ_damage
+				organ.set_organ_damage(0)
 			else
-				I.damage -= amount
+				organ.adjust_organ_damage(-(amount))
 				amount = 0
 		else
-			var/cap_dam = I.max_damage - I.damage
+			var/cap_dam = organ.max_damage - organ_damage
 			if(amount >= cap_dam)
-				I.take_damage(cap_dam, silent=TRUE)
+				organ.take_damage(cap_dam, silent=TRUE)
 				amount -= cap_dam
 			else
-				I.take_damage(amount, silent=TRUE)
+				organ.take_damage(amount, silent=TRUE)
 				amount = 0
 
 	if(do_update_health)
