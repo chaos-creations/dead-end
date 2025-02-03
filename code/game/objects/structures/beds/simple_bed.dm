@@ -1,6 +1,6 @@
 /obj/structure/bed/simple
 	desc = "A slatted wooden bed."
-	icon = 'icons/obj/structures/simple_bed.dmi'
+	icon = 'icons/obj/structures/furniture/bed_simple.dmi'
 	icon_state = "bed_padded_preview" // For map editor preview purposes
 	parts_type = /obj/item/stack/material/plank
 	material = /decl/material/solid/organic/wood/oak

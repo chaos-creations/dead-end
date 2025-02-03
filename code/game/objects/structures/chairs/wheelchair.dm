@@ -1,7 +1,7 @@
 /obj/structure/bed/chair/wheelchair
 	name = "wheelchair"
 	desc = "Now we're getting somewhere."
-	icon_state = "wheelchair"
+	icon = 'icons/obj/structures/furniture/wheelchair.dmi'
 	anchored = FALSE
 	buckle_movable = TRUE
 	movement_handlers = list(
@@ -9,7 +9,8 @@
 		/datum/movement_handler/delay = list(5),
 		/datum/movement_handler/move_relay_self
 	)
-	tool_interaction_flags = 0
+	tool_interaction_flags = TOOL_INTERACTION_NONE
+	material_alteration = MAT_FLAG_ALTERATION_NONE
 
 	var/item_form_type = /obj/item/wheelchair_kit
 	// TODO: Replace with reagent holder? This doesn't even properly handle non-human bloodstains.
@@ -20,9 +21,6 @@
 
 	if(!item_form_type)
 		verbs -= .verb/collapse
-
-/obj/structure/bed/chair/wheelchair/on_update_icon()
-	set_overlays(image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = ABOVE_HUMAN_LAYER))
 
 /obj/structure/bed/chair/wheelchair/can_apply_padding()
 	return FALSE
@@ -129,8 +127,7 @@
 	name = "compressed wheelchair kit"
 	desc = "Collapsed parts, prepared to immediately spring into the shape of a wheelchair."
 	icon = 'icons/obj/items/wheelchairkit.dmi'
-	icon_state = "wheelchair-item"
-	item_state = "rbed"
+	icon_state = ICON_STATE_WORLD
 	w_class = ITEM_SIZE_LARGE
 	max_health = 50
 	var/structure_form_type = /obj/structure/bed/chair/wheelchair
@@ -142,7 +139,7 @@
 	user.visible_message("<b>[user]</b> starts to lay out \the [src].")
 	if(do_after(user, 4 SECONDS, src))
 		var/obj/structure/bed/chair/wheelchair/W = new structure_form_type(get_turf(user))
-		user.visible_message(SPAN_NOTICE("<b>[user]</b> lays out \the [W]."))
+		user.visible_message("<b>[user]</b> lays out \the [W].")
 		W.add_fingerprint(user)
 		qdel(src)
 

@@ -135,8 +135,15 @@ INITIALIZE_IMMEDIATE(/obj/effect/gas_overlay)
 	var/table_icon_base = "metal"
 	var/table_icon_reinforced = "reinf_metal"
 
-	var/bench_icon = 'icons/obj/structures/benches.dmi'
-	var/pew_icon = 'icons/obj/structures/pews.dmi'
+	// TODO: Refactor these to just apply a generic material overlay (e.g. wood grain) instead of entirely-separate icon files?
+	// Alternatively, find some other way for icon variation based on material.
+	// You can't do it by having separate states in the base icons,
+	// because then modpacked materials can't add new states,
+	// and what if we really really want a special nullglass pew sprite or something?
+	var/bench_icon = 'icons/obj/structures/furniture/bench.dmi'
+	var/pew_icon = 'icons/obj/structures/furniture/pew.dmi'
+	var/slatted_seat_icon = 'icons/obj/structures/furniture/chair_slatted.dmi'
+	var/backed_chair_icon = 'icons/obj/structures/furniture/chair_backed.dmi'
 
 	var/list/stack_origin_tech = @'{"materials":1}' // Research level for stacks.
 
