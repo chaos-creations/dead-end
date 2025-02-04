@@ -2,12 +2,11 @@
 // TODO by end of Q2 2025: Repath /obj/structure/bed/chair to just /obj/structure/chair.
 // Remaining steps:
 // - Move padding interactions and padding_color var onto an extension
-// - Allow /obj/structure/grab_attack to handle buckling
 /obj/structure/bed
 	name = "bed"
 	desc = "A raised, padded platform for sleeping on. This one has straps for ensuring restful snoozing in microgravity."
-	icon = 'icons/obj/furniture.dmi'
-	icon_state = "bed"
+	icon = 'icons/obj/structures/furniture/bed.dmi'
+	icon_state = ICON_STATE_WORLD
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_dir = SOUTH
@@ -20,7 +19,6 @@
 	parts_type = /obj/item/stack/material/rods
 	user_comfort = 1
 	obj_flags = OBJ_FLAG_SUPPORT_MOB
-	var/base_icon = "bed"
 	var/padding_color
 
 /obj/structure/bed/user_can_mousedrop_onto(mob/user, atom/being_dropped, incapacitation_flags, params)
@@ -37,13 +35,16 @@
 /obj/structure/bed/get_surgery_success_modifier(delicate)
 	return delicate ? -5 : 0
 
-/obj/structure/bed/update_material_name()
+/obj/structure/bed/update_material_name(override_name)
+	var/base_name = override_name || initial(name)
+	var/new_name = base_name
 	if(reinf_material)
-		SetName("[reinf_material.adjective_name] [initial(name)]")
+		new_name = "[reinf_material.adjective_name] [base_name]"
 	else if(material)
-		SetName("[material.adjective_name] [initial(name)]")
-	else
-		SetName(initial(name))
+		new_name = "[material.adjective_name] [base_name]"
+	if(name_prefix)
+		new_name = "[name_prefix] [new_name]"
+	SetName(new_name)
 
 /obj/structure/bed/update_material_desc()
 	if(reinf_material)
@@ -51,10 +52,12 @@
 	else
 		desc = "[initial(desc)] It's made of [material.use_name]."
 
-// Reuse the cache/code from stools, todo maybe unify.
+/obj/structure/bed/proc/get_base_icon()
+	return ICON_STATE_WORLD
+
 /obj/structure/bed/on_update_icon()
 	..()
-	icon_state = base_icon
+	icon_state = get_base_icon()
 	if(istype(reinf_material))
 		if(material_alteration & MAT_FLAG_ALTERATION_COLOR)
 			add_overlay(overlay_image(icon, "[icon_state]_padding", padding_color || reinf_material.color, RESET_COLOR))
@@ -122,15 +125,6 @@
 			remove_padding()
 		return TRUE
 
-/obj/structure/bed/grab_attack(obj/item/grab/grab, mob/user)
-	var/mob/living/victim = grab.get_affecting_mob()
-	if(istype(victim) && istype(user))
-		user.visible_message(SPAN_NOTICE("\The [user] attempts to put \the [victim] onto \the [src]!"))
-		if(do_after(user, 2 SECONDS, src) && !QDELETED(victim) && !QDELETED(user) && !QDELETED(grab) && user_buckle_mob(victim, user))
-			qdel(grab)
-		return TRUE
-	return ..()
-
 /obj/structure/bed/proc/add_padding(var/padding_type, var/new_padding_color)
 	reinf_material = GET_DECL(padding_type)
 	padding_color = new_padding_color
@@ -149,7 +143,7 @@
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
 	desc = "For prime comfort during psychiatric evaluations."
-	icon_state = "psychbed"
+	icon = 'icons/obj/structures/furniture/bed_psych.dmi'
 	material = /decl/material/solid/organic/wood/walnut
 
 /obj/structure/bed/psych/leather

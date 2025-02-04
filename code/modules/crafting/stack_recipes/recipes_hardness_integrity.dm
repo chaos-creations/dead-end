@@ -52,14 +52,8 @@
 	result_type        = /obj/structure/bed/chair/bench
 	category           = "seating"
 
-/decl/stack_recipe/hardness/integrity/furniture/bench/single
-	result_type        = /obj/structure/bed/chair/bench/single
-
 /decl/stack_recipe/hardness/integrity/furniture/bench/pew
 	result_type        = /obj/structure/bed/chair/bench/pew
-
-/decl/stack_recipe/hardness/integrity/furniture/bench/pew/single
-	result_type        = /obj/structure/bed/chair/bench/pew/single
 
 /decl/stack_recipe/hardness/integrity/furniture/bench/lounge
 	result_type        = /obj/structure/bed/chair/bench/lounge
@@ -91,6 +85,12 @@
 
 /decl/stack_recipe/hardness/integrity/furniture/chair/roundedchair
 	result_type        = /obj/structure/bed/chair/rounded
+
+/decl/stack_recipe/hardness/integrity/furniture/chair/backed
+	result_type        = /obj/structure/bed/chair/backed
+
+/decl/stack_recipe/hardness/integrity/furniture/chair/slatted
+	result_type        = /obj/structure/bed/chair/slatted
 
 /decl/stack_recipe/hardness/integrity/furniture/drying_rack
 	result_type        = /obj/structure/drying_rack

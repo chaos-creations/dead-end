@@ -181,7 +181,7 @@
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
-	base_icon = "pussywagon"
+	color = null
 	anchored = FALSE
 	density =  TRUE
 	material_alteration = MAT_FLAG_ALTERATION_NONE
@@ -196,6 +196,9 @@
 
 	var/obj/item/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?
+
+/obj/structure/bed/chair/janicart/get_base_icon()
+	return initial(icon_state)
 
 /obj/structure/bed/chair/janicart/Initialize()
 	// Handled in init due to dirs needing to be stringified

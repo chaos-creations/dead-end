@@ -1,8 +1,7 @@
 /obj/structure/bed/sofa
 	name = "sofa"
 	desc = "A wide and comfy sofa - no assistants were harmed to produce it!"
-	icon_state = "sofa_preview"
-	base_icon = "sofa"
+	icon = 'icons/obj/structures/furniture/sofa_middle.dmi'
 	color = "#666666"
 	buckle_dir = FALSE
 	buckle_lying = FALSE //force people to sit up in chairs when buckled
@@ -23,9 +22,7 @@
 	return ..()
 
 /obj/structure/bed/sofa/on_update_icon()
-
 	..()
-
 	var/use_base_color  = get_color()
 	var/use_reinf_color = padding_color || ((material_alteration & MAT_FLAG_ALTERATION_COLOR) ? reinf_material?.color : null)
 
@@ -89,9 +86,7 @@
 	paint_color = "#ffbf00"
 
 /obj/structure/bed/sofa/right
-	name = "sofa"
-	icon_state = "sofa_r_preview"
-	base_icon = "sofa_r"
+	icon = 'icons/obj/structures/furniture/sofa_right.dmi'
 /obj/structure/bed/sofa/right/unpadded
 	reinf_material = null
 /obj/structure/bed/sofa/right/red
@@ -117,8 +112,7 @@
 
 /obj/structure/bed/sofa/left
 	name = "sofa"
-	icon_state = "sofa_l_preview"
-	base_icon = "sofa_l"
+	icon = 'icons/obj/structures/furniture/sofa_left.dmi'
 /obj/structure/bed/sofa/left/unpadded
 	reinf_material = null
 /obj/structure/bed/sofa/left/red
