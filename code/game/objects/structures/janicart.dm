@@ -193,6 +193,7 @@
 		/datum/movement_handler/delay = list(1),
 		/datum/movement_handler/move_relay_self/janicart
 	)
+	padding_extension_type = null
 
 	var/obj/item/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?

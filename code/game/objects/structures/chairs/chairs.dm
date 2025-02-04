@@ -37,39 +37,26 @@
 /obj/structure/bed/chair/on_update_icon()
 	..() // handles setting icon_state to get_base_icon(), and adds padding
 	var/base_color = get_color()
-	var/reinf_color = padding_color || reinf_material?.color
+	var/datum/extension/padding/padding_extension = get_extension(src, __IMPLIED_TYPE__)
+	var/use_padding_color = padding_extension?.get_padding_color(material_alteration & MAT_FLAG_ALTERATION_COLOR)
+	var/use_layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
 
-	var/image/I = image(icon, "[icon_state]_over")
-	I.layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
-	if(material && (material_alteration & MAT_FLAG_ALTERATION_COLOR))
-		I.appearance_flags |= RESET_COLOR
-		I.color = base_color
+	var/image/I = overlay_image(icon, "[icon_state]_over", base_color, RESET_COLOR)
+	I.layer = use_layer
 	add_overlay(I)
-	I = image(icon, "[icon_state]_armrest")
-	I.layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
-	if(material && (material_alteration & MAT_FLAG_ALTERATION_COLOR))
-		I.appearance_flags |= RESET_COLOR
-		I.color = base_color
+	I = overlay_image(icon, "[icon_state]_armrest", base_color, RESET_COLOR)
+	I.layer = use_layer
 	add_overlay(I)
-	if(reinf_material)
-		I =  image(icon, "[icon_state]_padding_over")
-		I.layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
-		if(material_alteration & MAT_FLAG_ALTERATION_COLOR)
-			I.appearance_flags |= RESET_COLOR
-			I.color = reinf_color
+	if(padding_extension?.get_padding_material())
+		I = overlay_image(icon, "[icon_state]_padding_over", use_padding_color, RESET_COLOR)
+		I.layer = use_layer
 		add_overlay(I)
-		I = image(icon, "[icon_state]_padding_armrest")
-		I.layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
-		if(material_alteration & MAT_FLAG_ALTERATION_COLOR)
-			I.appearance_flags |= RESET_COLOR
-			I.color = reinf_color
+		I = overlay_image(icon, "[icon_state]_padding_armrest", use_padding_color, RESET_COLOR)
+		I.layer = use_layer
 		add_overlay(I)
 	if(has_special_overlay)
-		I = image(icon, "[icon_state]_special")
-		I.layer = buckled_mob ? ABOVE_HUMAN_LAYER : FLOAT_LAYER
-		if(material && (material_alteration & MAT_FLAG_ALTERATION_COLOR))
-			I.appearance_flags |= RESET_COLOR
-			I.color = base_color
+		I = overlay_image(icon, "[icon_state]_special", base_color, RESET_COLOR)
+		I.layer = use_layer
 		add_overlay(I)
 
 /obj/structure/bed/chair/rotate(mob/user)
@@ -81,57 +68,57 @@
 	update_icon()
 
 /obj/structure/bed/chair/padded
-	reinf_material = /decl/material/solid/organic/cloth
+	initial_padding_material = /decl/material/solid/organic/cloth
 /obj/structure/bed/chair/padded/red
-	padding_color = "#9d2300"
+	initial_padding_color = "#9d2300"
 /obj/structure/bed/chair/padded/brown
-	reinf_material = /decl/material/solid/organic/leather
+	initial_padding_material = /decl/material/solid/organic/leather
 /obj/structure/bed/chair/padded/teal
-	padding_color = "#00e1ff"
+	initial_padding_color = "#00e1ff"
 /obj/structure/bed/chair/padded/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/padded/green
-	padding_color = "#b7f27d"
+	initial_padding_color = "#b7f27d"
 /obj/structure/bed/chair/padded/purple
-	padding_color = "#9933ff"
+	initial_padding_color = "#9933ff"
 /obj/structure/bed/chair/padded/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/padded/beige
-	padding_color = "#ceb689"
+	initial_padding_color = "#ceb689"
 /obj/structure/bed/chair/padded/lime
-	padding_color = "#62e36c"
+	initial_padding_color = "#62e36c"
 /obj/structure/bed/chair/padded/yellow
-	padding_color = "#ffbf00"
+	initial_padding_color = "#ffbf00"
 
 // Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
 	name = "comfy chair"
 	desc = "It's a chair. It looks comfy."
 	icon = 'icons/obj/structures/furniture/chair_comfy.dmi'
-	reinf_material = /decl/material/solid/organic/cloth
+	initial_padding_material = /decl/material/solid/organic/cloth
 
 /obj/structure/bed/chair/comfy/unpadded
-	reinf_material = null
+	initial_padding_material = null
 /obj/structure/bed/chair/comfy/brown
-	reinf_material = /decl/material/solid/organic/leather
+	initial_padding_material = /decl/material/solid/organic/leather
 /obj/structure/bed/chair/comfy/red
-	padding_color = "#9d2300"
+	initial_padding_color = "#9d2300"
 /obj/structure/bed/chair/comfy/teal
-	padding_color = "#00e1ff"
+	initial_padding_color = "#00e1ff"
 /obj/structure/bed/chair/comfy/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/comfy/green
-	padding_color = "#b7f27d"
+	initial_padding_color = "#b7f27d"
 /obj/structure/bed/chair/comfy/purple
-	padding_color = "#9933ff"
+	initial_padding_color = "#9933ff"
 /obj/structure/bed/chair/comfy/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/comfy/beige
-	padding_color = "#ceb689"
+	initial_padding_color = "#ceb689"
 /obj/structure/bed/chair/comfy/lime
-	padding_color = "#62e36c"
+	initial_padding_color = "#62e36c"
 /obj/structure/bed/chair/comfy/yellow
-	padding_color = "#ffbf00"
+	initial_padding_color = "#ffbf00"
 
 /obj/structure/bed/chair/comfy/captain
 	name = "captain chair"
@@ -139,38 +126,38 @@
 	icon = 'icons/obj/structures/furniture/chair_captain.dmi'
 	buckle_movable = 1
 	material = /decl/material/solid/metal/steel
-	reinf_material = /decl/material/solid/organic/cloth
-	padding_color = "#46698c"
+	initial_padding_material = /decl/material/solid/organic/cloth
+	initial_padding_color = "#46698c"
 	has_special_overlay = TRUE
 
 /obj/structure/bed/chair/armchair
 	name = "armchair"
 	desc = "It's an armchair. It looks comfy."
 	icon = 'icons/obj/structures/furniture/armchair.dmi'
-	reinf_material = /decl/material/solid/organic/cloth
+	initial_padding_material = /decl/material/solid/organic/cloth
 
 /obj/structure/bed/chair/armchair/unpadded
-	reinf_material = null
+	initial_padding_material = null
 /obj/structure/bed/chair/armchair/brown
-	reinf_material = /decl/material/solid/organic/leather
+	initial_padding_material = /decl/material/solid/organic/leather
 /obj/structure/bed/chair/armchair/red
-	padding_color = "#9d2300"
+	initial_padding_color = "#9d2300"
 /obj/structure/bed/chair/armchair/teal
-	padding_color = "#00e1ff"
+	initial_padding_color = "#00e1ff"
 /obj/structure/bed/chair/armchair/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/armchair/green
-	padding_color = "#b7f27d"
+	initial_padding_color = "#b7f27d"
 /obj/structure/bed/chair/armchair/purple
-	padding_color = "#9933ff"
+	initial_padding_color = "#9933ff"
 /obj/structure/bed/chair/armchair/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/armchair/beige
-	padding_color = "#ceb689"
+	initial_padding_color = "#ceb689"
 /obj/structure/bed/chair/armchair/lime
-	padding_color = "#62e36c"
+	initial_padding_color = "#62e36c"
 /obj/structure/bed/chair/armchair/yellow
-	padding_color = "#ffbf00"
+	initial_padding_color = "#ffbf00"
 
 /obj/structure/bed/chair/office
 	name = "office chair"
@@ -178,7 +165,7 @@
 	anchored = FALSE
 	buckle_movable = 1
 	movable_flags = MOVABLE_FLAG_WHEELED
-	reinf_material = /decl/material/solid/organic/cloth
+	initial_padding_material = /decl/material/solid/organic/cloth
 
 /obj/structure/bed/chair/office/Move()
 	. = ..()
@@ -219,9 +206,9 @@
 		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
 /obj/structure/bed/chair/office/light
-	padding_color = "#f0f0f0"
+	initial_padding_color = "#f0f0f0"
 /obj/structure/bed/chair/office/dark
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 
 /obj/structure/bed/chair/office/comfy
 	name = "comfy office chair"
@@ -229,27 +216,27 @@
 	icon = 'icons/obj/structures/furniture/chair_comfy_office.dmi'
 
 /obj/structure/bed/chair/office/comfy/unpadded
-	reinf_material = null
+	initial_padding_material = null
 /obj/structure/bed/chair/office/comfy/brown
-	reinf_material = /decl/material/solid/organic/leather
+	initial_padding_material = /decl/material/solid/organic/leather
 /obj/structure/bed/chair/office/comfy/red
-	padding_color = "#9d2300"
+	initial_padding_color = "#9d2300"
 /obj/structure/bed/chair/office/comfy/teal
-	padding_color = "#00e1ff"
+	initial_padding_color = "#00e1ff"
 /obj/structure/bed/chair/office/comfy/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/office/comfy/green
-	padding_color = "#b7f27d"
+	initial_padding_color = "#b7f27d"
 /obj/structure/bed/chair/office/comfy/purple
-	padding_color = "#9933ff"
+	initial_padding_color = "#9933ff"
 /obj/structure/bed/chair/office/comfy/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/office/comfy/beige
-	padding_color = "#ceb689"
+	initial_padding_color = "#ceb689"
 /obj/structure/bed/chair/office/comfy/lime
-	padding_color = "#62e36c"
+	initial_padding_color = "#62e36c"
 /obj/structure/bed/chair/office/comfy/yellow
-	padding_color = "#ffbf00"
+	initial_padding_color = "#ffbf00"
 
 /obj/structure/bed/chair/rounded
 	name = "rounded chair"
@@ -257,25 +244,25 @@
 	icon = 'icons/obj/structures/furniture/chair_rounded.dmi'
 
 /obj/structure/bed/chair/rounded/brown
-	reinf_material = /decl/material/solid/organic/leather
+	initial_padding_material = /decl/material/solid/organic/leather
 /obj/structure/bed/chair/rounded/red
-	padding_color = "#9d2300"
+	initial_padding_color = "#9d2300"
 /obj/structure/bed/chair/rounded/teal
-	padding_color = "#00e1ff"
+	initial_padding_color = "#00e1ff"
 /obj/structure/bed/chair/rounded/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/rounded/green
-	padding_color = "#b7f27d"
+	initial_padding_color = "#b7f27d"
 /obj/structure/bed/chair/rounded/purple
-	padding_color = "#9933ff"
+	initial_padding_color = "#9933ff"
 /obj/structure/bed/chair/rounded/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/rounded/beige
-	padding_color = "#ceb689"
+	initial_padding_color = "#ceb689"
 /obj/structure/bed/chair/rounded/lime
-	padding_color = "#62e36c"
+	initial_padding_color = "#62e36c"
 /obj/structure/bed/chair/rounded/yellow
-	padding_color = "#ffbf00"
+	initial_padding_color = "#ffbf00"
 
 /obj/structure/bed/chair/shuttle
 	name = "shuttle seat"
@@ -283,7 +270,7 @@
 	icon = 'icons/obj/structures/furniture/chair_shuttle.dmi'
 	buckle_sound = 'sound/effects/metal_close.ogg'
 	material = /decl/material/solid/metal/steel
-	reinf_material = /decl/material/solid/organic/cloth
+	initial_padding_material = /decl/material/solid/organic/cloth
 	has_special_overlay = TRUE
 
 /obj/structure/bed/chair/shuttle/get_base_icon()
@@ -292,11 +279,11 @@
 		. += "_buckled"
 
 /obj/structure/bed/chair/shuttle/blue
-	padding_color = "#46698c"
+	initial_padding_color = "#46698c"
 /obj/structure/bed/chair/shuttle/black
-	padding_color = "#505050"
+	initial_padding_color = "#505050"
 /obj/structure/bed/chair/shuttle/white
-	padding_color = "#f0f0f0"
+	initial_padding_color = "#f0f0f0"
 
 /obj/structure/bed/chair/wood
 	name_prefix = "classic"
@@ -304,9 +291,7 @@
 	icon = 'icons/obj/structures/furniture/chair_wooden.dmi'
 	color = WOOD_COLOR_GENERIC
 	material = /decl/material/solid/organic/wood/oak
-
-/obj/structure/bed/chair/wood/can_apply_padding()
-	return FALSE
+	padding_extension_type = null // Cannot be padded.
 
 /obj/structure/bed/chair/wood/mahogany
 	color = WOOD_COLOR_RICH

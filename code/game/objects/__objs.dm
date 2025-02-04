@@ -136,6 +136,9 @@
 			wrench_floor_bolts(user, null, used_item)
 			update_icon()
 			return TRUE
+	var/datum/extension/padding/padding_extension = get_extension(src, __IMPLIED_TYPE__)
+	if(padding_extension && padding_extension.handle_use_item(used_item, user))
+		return TRUE
 	return ..()
 
 /obj/proc/wrench_floor_bolts(mob/user, delay = 2 SECONDS, obj/item/tool)

@@ -11,6 +11,7 @@
 	)
 	tool_interaction_flags = TOOL_INTERACTION_NONE
 	material_alteration = MAT_FLAG_ALTERATION_NONE
+	padding_extension_type = null // Cannot be padded.
 
 	var/item_form_type = /obj/item/wheelchair_kit
 	// TODO: Replace with reagent holder? This doesn't even properly handle non-human bloodstains.
@@ -21,9 +22,6 @@
 
 	if(!item_form_type)
 		verbs -= .verb/collapse
-
-/obj/structure/bed/chair/wheelchair/can_apply_padding()
-	return FALSE
 
 /obj/structure/bed/chair/wheelchair/attack_hand(mob/user)
 	if(!user.check_dexterity(DEXTERITY_SIMPLE_MACHINES, TRUE))

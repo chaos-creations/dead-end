@@ -485,6 +485,7 @@
 #include "code\datums\extensions\multitool\items\items.dm"
 #include "code\datums\extensions\multitool\items\stock_parts_radio.dm"
 #include "code\datums\extensions\on_click\turf_hand.dm"
+#include "code\datums\extensions\padding\padding.dm"
 #include "code\datums\extensions\resistable\resistable.dm"
 #include "code\datums\extensions\shearable\shearable.dm"
 #include "code\datums\genetics\genetic_conditions.dm"
