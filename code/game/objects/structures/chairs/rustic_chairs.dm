@@ -1,4 +1,4 @@
-/obj/structure/bed/chair/rustic
+/obj/structure/chair/rustic
 	name_prefix = "rustic"
 	desc = "A simple, rustic-looking chair. Looks like it'd hurt to sit on for too long..."
 	icon = 'icons/obj/structures/furniture/chair_rustic.dmi'
@@ -6,7 +6,7 @@
 	color = /decl/material/solid/organic/wood/walnut::color
 	user_comfort = -0.5
 
-/obj/structure/bed/chair/rustic_fancy
+/obj/structure/chair/rustic_fancy
 	name_prefix = "fancy"
 	desc = "An ornate, detailed chair made from wood. It has armrests!"
 	icon = 'icons/obj/structures/furniture/chair_rustic_fancy.dmi'
@@ -16,5 +16,5 @@
 	initial_padding_color = COLOR_CHERRY_RED
 	user_comfort = 1.25
 
-/obj/structure/bed/chair/rustic_fancy/ebony
+/obj/structure/chair/rustic_fancy/ebony
 	material = /decl/material/solid/organic/wood/ebony

@@ -113,7 +113,7 @@
 	if(!istype(corpse))
 		return
 	corpse.SetName("Captain")
-	var/obj/structure/bed/chair/C = locate() in loc
+	var/obj/structure/chair/C = locate() in loc
 	if(C)
 		C.buckle_mob(corpse)
 	qdel(src)

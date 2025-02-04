@@ -15,6 +15,7 @@
 	var/iv_attached = 0
 	var/iv_stand = TRUE
 
+// this completely circumvents normal bed icon updating, does this really even need to be a bed subtype?
 /obj/structure/bed/roller/on_update_icon()
 	cut_overlays()
 	if(density)
