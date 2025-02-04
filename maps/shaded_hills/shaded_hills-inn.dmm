@@ -27,7 +27,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/stable)
 "bv" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 4
 	},
 /turf/floor/wood/walnut,
@@ -249,13 +249,13 @@
 	dir = 4;
 	start_lit = 1
 	},
-/obj/structure/bed/chair/rustic_fancy/ebony{
+/obj/structure/chair/rustic_fancy/ebony{
 	dir = 1
 	},
 /turf/floor/carpet,
 /area/shaded_hills/inn)
 "hc" = (
-/obj/structure/bed/chair/bench/ebony{
+/obj/structure/chair/bench/ebony{
 	dir = 1
 	},
 /turf/floor/wood/rough/walnut,
@@ -305,7 +305,7 @@
 /turf/floor/path/herringbone/basalt,
 /area/shaded_hills/inn)
 "ij" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 4
 	},
 /turf/floor/wood/walnut,
@@ -350,7 +350,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/stable)
 "jk" = (
-/obj/structure/bed/chair/bench/pew/mahogany{
+/obj/structure/chair/bench/pew/mahogany{
 	dir = 1
 	},
 /obj/abstract/landmark/start/shaded_hills/cleric,
@@ -406,7 +406,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/stable)
 "kI" = (
-/obj/structure/bed/chair/bench/pew/ebony{
+/obj/structure/chair/bench/pew/ebony{
 	dir = 4
 	},
 /turf/floor/wood/walnut,
@@ -433,7 +433,7 @@
 /turf/floor/path/herringbone/basalt,
 /area/shaded_hills/inn)
 "lL" = (
-/obj/structure/bed/chair/bench/ebony{
+/obj/structure/chair/bench/ebony{
 	dir = 1
 	},
 /obj/abstract/landmark/start/shaded_hills/farmer,
@@ -459,7 +459,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/farmhouse)
 "mD" = (
-/obj/structure/bed/chair/rustic,
+/obj/structure/chair/rustic,
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/stable)
 "mG" = (
@@ -488,7 +488,7 @@
 /turf/wall/log/walnut,
 /area/shaded_hills/stable)
 "nx" = (
-/obj/structure/bed/chair/bench/pew/ebony{
+/obj/structure/chair/bench/pew/ebony{
 	dir = 8
 	},
 /obj/structure/railing/mapped/wooden/ebony{
@@ -532,7 +532,7 @@
 /turf/floor/grass,
 /area/shaded_hills/outside/downlands)
 "pd" = (
-/obj/structure/bed/chair/bench/pew/mahogany{
+/obj/structure/chair/bench/pew/mahogany{
 	dir = 1
 	},
 /turf/floor/wood/mahogany,
@@ -705,13 +705,13 @@
 /turf/floor/grass,
 /area/shaded_hills/outside/downlands)
 "tZ" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 4
 	},
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/inn/porch)
 "uk" = (
-/obj/structure/bed/chair/bench/pew/ebony{
+/obj/structure/chair/bench/pew/ebony{
 	dir = 8
 	},
 /obj/effect/floor_decal/spline/fancy/wood/walnut{
@@ -795,7 +795,7 @@
 /obj/structure/wall_sconce/lantern{
 	dir = 4
 	},
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 1
 	},
 /turf/floor/wood/rough/walnut,
@@ -869,7 +869,7 @@
 /turf/wall/brick/basalt,
 /area/shaded_hills/general_store)
 "yJ" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 1
 	},
 /obj/abstract/landmark/start/shaded_hills/farmer,
@@ -995,7 +995,7 @@
 /turf/floor/grass,
 /area/shaded_hills/outside/shrine)
 "BG" = (
-/obj/structure/bed/chair/bench/ebony{
+/obj/structure/chair/bench/ebony{
 	dir = 1
 	},
 /turf/floor/wood/walnut,
@@ -1065,7 +1065,7 @@
 /turf/floor/wood/walnut,
 /area/shaded_hills/general_store)
 "Er" = (
-/obj/structure/bed/chair/bench/pew/ebony{
+/obj/structure/chair/bench/pew/ebony{
 	dir = 4
 	},
 /obj/structure/railing/mapped/wooden/ebony{
@@ -1311,7 +1311,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/shrine)
 "Jw" = (
-/obj/structure/bed/chair/rustic,
+/obj/structure/chair/rustic,
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/inn/porch)
 "Jz" = (
@@ -1334,7 +1334,7 @@
 /turf/floor/path/herringbone/basalt,
 /area/shaded_hills/shrine)
 "JS" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 1
 	},
 /turf/floor/wood/rough/walnut,
@@ -1355,7 +1355,7 @@
 /turf/wall/log/walnut/shutter/open,
 /area/shaded_hills/shrine)
 "KD" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 1
 	},
 /turf/floor/wood/walnut,
@@ -1493,7 +1493,7 @@
 /obj/structure/wall_sconce/lantern{
 	dir = 8
 	},
-/obj/structure/bed/chair/bench/pew/ebony{
+/obj/structure/chair/bench/pew/ebony{
 	dir = 4
 	},
 /turf/floor/wood/walnut,
@@ -1540,7 +1540,7 @@
 /turf/wall/log/walnut,
 /area/shaded_hills/shrine)
 "QL" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 1
 	},
 /obj/structure/wall_sconce/lantern{
@@ -1621,7 +1621,7 @@
 /turf/floor/mud,
 /area/shaded_hills/outside/shrine)
 "Sw" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 8
 	},
 /turf/floor/wood/rough/walnut,
@@ -1669,7 +1669,7 @@
 /turf/floor/path/herringbone/basalt,
 /area/shaded_hills/inn/kitchen)
 "Td" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 8
 	},
 /turf/floor/wood/walnut,
@@ -1723,7 +1723,7 @@
 /turf/floor/wood/rough/walnut,
 /area/shaded_hills/shrine)
 "US" = (
-/obj/structure/bed/chair/rustic{
+/obj/structure/chair/rustic{
 	dir = 4
 	},
 /turf/floor/wood/walnut,

@@ -47,7 +47,7 @@
 /turf/floor/plating,
 /area/ship/trade/maintenance/solars)
 "ai" = (
-/obj/structure/bed/chair/wood,
+/obj/structure/chair/wood,
 /turf/floor/reinforced/airless,
 /area/space)
 "aj" = (
