@@ -5,7 +5,7 @@
 	icon = 'icons/obj/structures/furniture/bench.dmi'
 	icon_state = ICON_STATE_WORLD + "_standing"
 	color = WOOD_COLOR_GENERIC
-	reinf_material = null
+	initial_padding_material = null
 	material = /decl/material/solid/organic/wood/oak
 	obj_flags = 0
 	anchored = TRUE

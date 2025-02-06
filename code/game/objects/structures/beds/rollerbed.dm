@@ -9,6 +9,7 @@
 	buckle_pixel_shift = list("x" = 0, "y" = 0, "z" = 6)
 	movable_flags = MOVABLE_FLAG_WHEELED
 	tool_interaction_flags = 0
+	padding_extension_type = null // Cannot be padded.
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 	var/obj/item/chems/beaker
 	var/iv_attached = 0
@@ -31,9 +32,6 @@
 		if(density)
 			iv.pixel_y = 6
 		add_overlay(iv)
-
-/obj/structure/bed/roller/can_apply_padding()
-	return FALSE
 
 /obj/structure/bed/roller/attackby(obj/item/I, mob/user)
 	if(iv_stand && !beaker && istype(I, /obj/item/chems))

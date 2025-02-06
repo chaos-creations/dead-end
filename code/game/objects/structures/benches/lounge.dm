@@ -10,5 +10,5 @@
 /obj/structure/bed/chair/bench/lounge/mapped
 	color          = /decl/material/solid/organic/wood/mahogany::color
 	material       = /decl/material/solid/organic/wood/mahogany
-	reinf_material = /decl/material/solid/organic/cloth
-	padding_color  = COLOR_RED_GRAY
+	initial_padding_material = /decl/material/solid/organic/cloth
+	initial_padding_color  = COLOR_RED_GRAY

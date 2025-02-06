@@ -12,8 +12,8 @@
 	icon = 'icons/obj/structures/furniture/chair_rustic_fancy.dmi'
 	material = /decl/material/solid/organic/wood/oak
 	color = COLOR_WHITE // preview state is precolored
-	reinf_material = /decl/material/solid/organic/cloth
-	padding_color = COLOR_CHERRY_RED
+	initial_padding_material = /decl/material/solid/organic/cloth
+	initial_padding_color = COLOR_CHERRY_RED
 	user_comfort = 1.25
 
 /obj/structure/bed/chair/rustic_fancy/ebony
