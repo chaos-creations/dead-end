@@ -27,7 +27,7 @@
 	var/meat_name                          // Taken from first owner.
 
 	// Damage vars.
-	var/damage = 0                         // Current damage to the organ
+	VAR_PRIVATE/_organ_damage = 0          // Current damage to the organ
 	var/min_broken_damage = 30             // Damage before becoming broken
 	var/max_damage = 30                    // Damage cap, including scarring
 	var/absolute_max_damage = 0            // Lifetime damage cap, ignoring scarring.
@@ -63,8 +63,17 @@
 /obj/item/organ/attack_self(var/mob/user)
 	return (owner && loc == owner && owner == user)
 
+/obj/item/organ/proc/set_organ_damage(amt)
+	_organ_damage = amt
+
+/obj/item/organ/proc/adjust_organ_damage(amt)
+	_organ_damage = clamp(_organ_damage + amt, 0, max_damage)
+
+/obj/item/organ/proc/get_organ_damage()
+	return _organ_damage // TODO: get_max_health() - current_health, unify organ/item damage handling.
+
 /obj/item/organ/proc/is_broken()
-	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN) || (status & ORGAN_DEAD))
+	return (get_organ_damage() >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN) || (status & ORGAN_DEAD))
 
 //Third argument may be a dna datum; if null will be set to holder's dna.
 /obj/item/organ/Initialize(mapload, material_key, datum/mob_snapshot/supplied_appearance)
@@ -197,7 +206,7 @@
 	reset_status()
 
 /obj/item/organ/proc/die()
-	damage = max_damage
+	_organ_damage = max_damage
 	status |= ORGAN_DEAD
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL_LIST(ailments)
@@ -227,7 +236,7 @@
 				blood_splatter(get_turf(src), src, 1)
 			remove_any_reagents(0.1)
 		if(get_config_value(/decl/config/toggle/health_organs_decay))
-			take_general_damage(rand(1,3))
+			take_damage(rand(1,3))
 		germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_TWO)
 			germ_level += rand(2,6)
@@ -245,7 +254,7 @@
 			handle_ailment(ailment)
 
 	//check if we've hit max_damage
-	if(damage >= max_damage)
+	if(get_organ_damage() >= max_damage)
 		die()
 
 /obj/item/organ/proc/handle_ailment(var/datum/ailment/ailment)
@@ -309,7 +318,7 @@
 			parent.germ_level++
 
 		if (prob(3))	//about once every 30 seconds
-			take_general_damage(1,silent=prob(30))
+			take_damage(1, silent =prob(30))
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -347,7 +356,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(!owner)
 		PRINT_STACK_TRACE("rejuvenate() called on organ of type [type] with no owner.")
-	damage = 0
+	_organ_damage = 0
 	reset_status()
 	QDEL_NULL_LIST(ailments)
 	if(!ignore_organ_traits)
@@ -381,12 +390,14 @@
 		germ_level -= round(2 * antibiotics)
 	germ_level = max(0, germ_level)
 
-/obj/item/organ/proc/take_general_damage(var/amount, var/silent = FALSE)
-	CRASH("Not Implemented")
+// Bypass the atom damage system when inside an owner, as organs implement their own health handling etc.
+/obj/item/organ/take_damage(damage, damage_type = BRUTE, damage_flags, inflicter, armor_pen = 0, silent, do_update_health)
+	if(!owner)
+		return ..()
 
 /obj/item/organ/proc/heal_damage(amount)
 	if(can_recover())
-		damage = clamp(damage - round(amount, 0.1), 0, max_damage)
+		_organ_damage = clamp(_organ_damage - round(amount, 0.1), 0, max_damage)
 		if(owner)
 			owner.update_health()
 

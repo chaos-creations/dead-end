@@ -790,7 +790,7 @@
 				M.take_damage(damage)
 			else
 				to_chat(M, SPAN_DANGER("You land heavily on your [affecting.name]!"))
-				affecting.take_external_damage(damage, 0)
+				affecting.take_damage(damage)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 

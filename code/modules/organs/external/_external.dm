@@ -202,7 +202,7 @@
 
 	if(owner && burn_damage)
 		owner.custom_pain("Something inside your [src] burns a [severity < 2 ? "bit" : "lot"]!", power * 15) //robotic organs won't feel it anyway
-		take_external_damage(0, burn_damage, 0, used_weapon = "Hot metal")
+		take_damage(burn_damage, BURN, inflicter = "Hot metal")
 		check_pain_disarm()
 
 	if(owner && (limb_flags & ORGAN_FLAG_CAN_STAND))
@@ -952,7 +952,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		clamped |= wound.clamped
 		number_wounds += wound.amount
 
-	damage = brute_dam + burn_dam
+	_organ_damage = brute_dam + burn_dam
 	update_damage_ratios()
 
 /obj/item/organ/external/proc/update_damage_ratios()
@@ -1506,7 +1506,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(LAZYLEN(internal_organs) && prob(brute_dam + force))
 		owner.custom_pain("A piece of bone in your [encased ? encased : name] moves painfully!", 50, affecting = src)
 		var/obj/item/organ/internal/internal_organ = pick(internal_organs)
-		internal_organ.take_internal_damage(rand(3,5))
+		internal_organ.take_damage(rand(3,5))
 
 /obj/item/organ/external/proc/jointlock(mob/attacker)
 	if(!can_feel_pain())
@@ -1548,7 +1548,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else if(status & ORGAN_BROKEN)
 		. += max_delay * 3/8
 	else if(BP_IS_PROSTHETIC(src))
-		. += max_delay * CLAMP01(damage/max_damage)
+		. += max_delay * CLAMP01(_organ_damage/max_damage)
 
 /obj/item/organ/external/proc/is_robotic()
 	return bodytype.is_robotic
@@ -1563,7 +1563,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/die() //External organs dying on a dime causes some real issues in combat
 	if(!BP_IS_PROSTHETIC(src) && !BP_IS_CRYSTAL(src))
-		var/decay_rate = damage/(max_damage*2)
+		var/decay_rate = _organ_damage/(max_damage*2)
 		germ_level += round(rand(decay_rate,decay_rate*1.5)) //So instead, we're going to say the damage is so severe its functions are slowly failing due to the extensive damage
 	else //TODO: more advanced system for synths
 		if(istype(src,/obj/item/organ/external/chest) || istype(src,/obj/item/organ/external/groin))

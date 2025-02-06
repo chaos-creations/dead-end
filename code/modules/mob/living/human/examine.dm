@@ -45,18 +45,18 @@
 
 	//Disfigured face
 	if(!(hideflags & HIDEFACE)) //Disfigurement only matters for the head currently.
-		var/obj/item/organ/external/E = GET_EXTERNAL_ORGAN(src, BP_HEAD)
-		if(E && (E.status & ORGAN_DISFIGURED)) //Check to see if we even have a head and if the head's disfigured.
-			if(E.species) //Check to make sure we have a species
-				msg += E.species.disfigure_msg(src)
+		var/obj/item/organ/external/limb = GET_EXTERNAL_ORGAN(src, BP_HEAD)
+		if(limb && (limb.status & ORGAN_DISFIGURED)) //Check to see if we even have a head and if the head's disfigured.
+			if(limb.species) //Check to make sure we have a species
+				msg += limb.species.disfigure_msg(src)
 			else //Just in case they lack a species for whatever reason.
 				msg += "<span class='warning'>[use_His] face is horribly mangled!</span>\n"
 
 	//splints
 	for(var/organ in list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM))
-		var/obj/item/organ/external/o = GET_EXTERNAL_ORGAN(src, organ)
-		if(o && o.splinted && o.splinted.loc == o)
-			msg += "<span class='warning'>[use_He] [use_has] \a [o.splinted] on [use_his] [o.name]!</span>\n"
+		var/obj/item/organ/external/limb = GET_EXTERNAL_ORGAN(src, organ)
+		if(limb && limb.splinted && limb.splinted.loc == limb)
+			msg += "<span class='warning'>[use_He] [use_has] \a [limb.splinted] on [use_his] [limb.name]!</span>\n"
 
 	if (src.stat)
 		msg += "<span class='warning'>[use_He] [use_is]n't responding to anything around [use_him] and seems to be unconscious.</span>\n"
@@ -118,49 +118,49 @@
 
 		var/list/organ_data = root_bodytype.has_limbs[organ_tag]
 		var/organ_descriptor = organ_data["descriptor"]
-		var/obj/item/organ/external/E = GET_EXTERNAL_ORGAN(src, organ_tag)
+		var/obj/item/organ/external/limb = GET_EXTERNAL_ORGAN(src, organ_tag)
 
-		if(!E)
+		if(!limb)
 			wound_flavor_text[organ_descriptor] = "<b>[use_He] [use_is] missing [use_his] [organ_descriptor].</b>\n"
 			continue
 
-		wound_flavor_text[E.name] = ""
+		wound_flavor_text[limb.name] = ""
 
-		if(E.applied_pressure == src)
-			applying_pressure = "<span class='info'>[use_He] [use_is] applying pressure to [use_his] [E.name].</span><br>"
+		if(limb.applied_pressure == src)
+			applying_pressure = "<span class='info'>[use_He] [use_is] applying pressure to [use_his] [limb.name].</span><br>"
 
 		var/obj/item/clothing/hidden
 		for(var/slot in global.standard_clothing_slots)
 			var/obj/item/clothing/C = get_equipped_item(slot)
-			if(istype(C) && (C.body_parts_covered & E.body_part))
+			if(istype(C) && (C.body_parts_covered & limb.body_part))
 				hidden = C
 				break
 
 		if(hidden && user != src)
-			if(E.status & ORGAN_BLEEDING && !(hidden.item_flags & ITEM_FLAG_THICKMATERIAL)) //not through a spacesuit
+			if(limb.status & ORGAN_BLEEDING && !(hidden.item_flags & ITEM_FLAG_THICKMATERIAL)) //not through a spacesuit
 				if(!hidden_bleeders[hidden])
 					hidden_bleeders[hidden] = list()
-				hidden_bleeders[hidden] += E.name
+				hidden_bleeders[hidden] += limb.name
 		else
-			if(!isSynthetic() && BP_IS_PROSTHETIC(E) && (E.parent && !BP_IS_PROSTHETIC(E.parent)))
-				wound_flavor_text[E.name] = "[use_He] [use_has] a [E.name].\n"
-			var/wounddesc = E.get_wounds_desc()
+			if(!isSynthetic() && BP_IS_PROSTHETIC(limb) && (limb.parent && !BP_IS_PROSTHETIC(limb.parent)))
+				wound_flavor_text[limb.name] = "[use_He] [use_has] a [limb.name].\n"
+			var/wounddesc = limb.get_wounds_desc()
 			if(wounddesc != "nothing")
-				wound_flavor_text[E.name] += "[use_He] [use_has] [wounddesc] on [use_his] [E.name].<br>"
+				wound_flavor_text[limb.name] += "[use_He] [use_has] [wounddesc] on [use_his] [limb.name].<br>"
 		if(!hidden || distance <=1)
-			if(E.is_dislocated())
-				wound_flavor_text[E.name] += "[use_His] [E.joint] is dislocated!<br>"
-			if(((E.status & ORGAN_BROKEN) && E.brute_dam > E.min_broken_damage) || (E.status & ORGAN_MUTATED))
-				wound_flavor_text[E.name] += "[use_His] [E.name] is dented and swollen!<br>"
-			if(E.status & ORGAN_DEAD)
-				if(BP_IS_PROSTHETIC(E) || BP_IS_CRYSTAL(E))
-					wound_flavor_text[E.name] += "[use_His] [E.name] is irrecoverably damaged!<br>"
+			if(limb.is_dislocated())
+				wound_flavor_text[limb.name] += "[use_His] [limb.joint] is dislocated!<br>"
+			if(((limb.status & ORGAN_BROKEN) && limb.brute_dam > limb.min_broken_damage) || (limb.status & ORGAN_MUTATED))
+				wound_flavor_text[limb.name] += "[use_His] [limb.name] is dented and swollen!<br>"
+			if(limb.status & ORGAN_DEAD)
+				if(BP_IS_PROSTHETIC(limb) || BP_IS_CRYSTAL(limb))
+					wound_flavor_text[limb.name] += "[use_His] [limb.name] is irrecoverably damaged!<br>"
 				else
-					wound_flavor_text[E.name] += "[use_His] [E.name] is grey and necrotic!<br>"
-			else if(E.damage >= E.max_damage && E.germ_level >= INFECTION_LEVEL_TWO)
-				wound_flavor_text[E.name] += "[use_His] [E.name] is likely beyond saving, and has begun to decay!<br>"
+					wound_flavor_text[limb.name] += "[use_His] [limb.name] is grey and necrotic!<br>"
+			else if(limb.get_organ_damage() >= limb.max_damage && limb.germ_level >= INFECTION_LEVEL_TWO)
+				wound_flavor_text[limb.name] += "[use_His] [limb.name] is likely beyond saving, and has begun to decay!<br>"
 
-		for(var/datum/wound/wound in E.wounds)
+		for(var/datum/wound/wound in limb.wounds)
 			var/list/embedlist = wound.embedded_objects
 			if(LAZYLEN(embedlist))
 				shown_objects += embedlist
@@ -171,7 +171,7 @@
 					else if(!parsedembed.Find("multiple [embedded.name]"))
 						parsedembed.Remove(embedded.name)
 						parsedembed.Add("multiple "+embedded.name)
-				wound_flavor_text["[E.name]"] += "The [wound.desc] on [use_his] [E.name] has \a [english_list(parsedembed, and_text = " and a ", comma_text = ", a ")] sticking out of it!<br>"
+				wound_flavor_text["[limb.name]"] += "The [wound.desc] on [use_his] [limb.name] has \a [english_list(parsedembed, and_text = " and a ", comma_text = ", a ")] sticking out of it!<br>"
 	for(var/hidden in hidden_bleeders)
 		wound_flavor_text[hidden] = "[use_He] [use_has] blood soaking through [hidden] around [use_his] [english_list(hidden_bleeders[hidden])]!<br>"
 
