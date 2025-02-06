@@ -1,0 +1,5 @@
+author: Penelope Haze
+changes:
+  - {tweak: 'Shears are now used to add or remove padding from objects. Wirecutters
+      still work as a backup, though.'}
+delete-after: true
