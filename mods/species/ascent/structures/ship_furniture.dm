@@ -1,9 +1,9 @@
-MANTIDIFY(/obj/structure/bed/chair/padded/purple, "mantid nest", "resting place") // sets up name, description and color
+MANTIDIFY(/obj/structure/chair/padded/purple, "mantid nest", "resting place") // sets up name, description and color
 
-/obj/structure/bed/chair/padded/purple/ascent // sets up icon and offsets
+/obj/structure/chair/padded/purple/ascent // sets up icon and offsets
 	icon = 'mods/species/ascent/icons/furniture/chair_nest.dmi'
 
-/obj/structure/bed/chair/padded/purple/ascent/gyne
+/obj/structure/chair/padded/purple/ascent/gyne
 	name = "mantid throne"
 	icon = 'mods/species/ascent/icons/furniture/chair_nest_large.dmi'
 

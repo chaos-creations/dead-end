@@ -1,7 +1,4 @@
 // Beds... get your mind out of the gutter, they're for sleeping!
-// TODO by end of Q2 2025: Repath /obj/structure/bed/chair to just /obj/structure/chair.
-// Remaining steps:
-// - Move padding interactions and padding_color var onto an extension
 /obj/structure/bed
 	name = "bed"
 	desc = "A raised, padded platform for sleeping on. This one has straps for ensuring restful snoozing in microgravity."
@@ -19,6 +16,7 @@
 	parts_type = /obj/item/stack/material/rods
 	user_comfort = 1
 	obj_flags = OBJ_FLAG_SUPPORT_MOB
+	monetary_worth_multiplier = 2.5 // Utility structures should be worth more than their matter (wheelchairs, rollers, etc).
 	/// The padding extension type for this bed. If null, no extension is created and this bed cannot be padded.
 	var/padding_extension_type = /datum/extension/padding
 	var/decl/material/initial_padding_material
@@ -33,9 +31,6 @@
 	if(user == being_dropped)
 		return user.Adjacent(src) && !user.incapacitated(INCAPACITATION_STUNNED|INCAPACITATION_KNOCKOUT)
 	return ..()
-
-/obj/structure/bed/get_base_value()
-	. = round(..() * 2.5) // Utility structures should be worth more than their matter (wheelchairs, rollers, etc).
 
 /obj/structure/bed/get_surgery_surface_quality(mob/living/victim, mob/living/user)
 	return OPERATE_PASSABLE
@@ -56,34 +51,28 @@
 		new_name = "[name_prefix] [new_name]"
 	SetName(new_name)
 
-/obj/structure/bed/update_material_desc()
+/obj/structure/bed/update_material_desc(override_desc)
+	var/base_desc = override_desc || initial(desc)
 	var/datum/extension/padding/padding_extension = get_extension(src, __IMPLIED_TYPE__)
 	var/decl/material/padding_material = padding_extension?.get_padding_material()
 	if(padding_material)
-		desc = "[initial(desc)] It's made of [material.use_name] and covered with [padding_material.use_name]."
+		desc = "[base_desc] It's made of [material.use_name] and covered with [padding_material.use_name]."
 	else
-		desc = "[initial(desc)] It's made of [material.use_name]."
-
-/obj/structure/bed/proc/get_base_icon()
-	return ICON_STATE_WORLD
+		desc = "[base_desc] It's made of [material.use_name]."
 
 /obj/structure/bed/on_update_icon()
 	..()
-	icon_state = get_base_icon()
+	icon_state = ICON_STATE_WORLD
 	var/datum/extension/padding/padding_extension = get_extension(src, __IMPLIED_TYPE__)
 	var/decl/material/padding_material = padding_extension?.get_padding_material()
 	if(padding_material)
 		add_overlay(overlay_image(icon, "[icon_state]_padding", material_alteration & MAT_FLAG_ALTERATION_COLOR ? padding_extension.get_padding_color() : null, RESET_COLOR|RESET_ALPHA))
 
+// Used to allow things to pass over dense beds, e.g. rollerbeds, ironing boards
 /obj/structure/bed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+		return TRUE
 	return ..()
-
-/obj/structure/bed/explosion_act(severity)
-	. = ..()
-	if(. && !QDELETED(src) && (severity == 1 || (severity == 2 && prob(50)) || (severity == 3 && prob(5))))
-		physically_destroyed()
 
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"

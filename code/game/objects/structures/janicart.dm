@@ -172,36 +172,34 @@
 /datum/movement_handler/move_relay_self/janicart/MayMove(mob/mover, is_external)
 	. = ..()
 	if(. == MOVEMENT_PROCEED && !is_external && !(locate(/obj/item/janicart_key) in mover.get_held_items()))
-		var/obj/structure/bed/chair/janicart/janicart = host
+		var/obj/structure/janicart/janicart = host
 		to_chat(mover, SPAN_WARNING("You'll need the keys in one of your hands to drive this [istype(janicart) ? janicart.callme : host.name]."))
 		return MOVEMENT_STOP
 
 //old style cart
-/obj/structure/bed/chair/janicart
+/obj/structure/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
+	can_buckle = TRUE
+	buckle_lying = FALSE // force people to sit up when buckled to it
+	buckle_sound = 'sound/effects/buckle.ogg'
+	buckle_layer_above = TRUE
+	buckle_movable = TRUE
 	color = null
 	anchored = FALSE
 	density =  TRUE
 	material_alteration = MAT_FLAG_ALTERATION_NONE
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
-	buckle_layer_above = TRUE
-	buckle_movable = TRUE
 	movement_handlers = list(
 		/datum/movement_handler/deny_multiz,
 		/datum/movement_handler/delay = list(1),
 		/datum/movement_handler/move_relay_self/janicart
 	)
-	padding_extension_type = null
-
 	var/obj/item/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 
-/obj/structure/bed/chair/janicart/get_base_icon()
-	return initial(icon_state)
-
-/obj/structure/bed/chair/janicart/Initialize()
+/obj/structure/janicart/Initialize()
 	// Handled in init due to dirs needing to be stringified
 	buckle_pixel_shift = list(
 		"[NORTH]" = list("x" =   0, "y" = 4, "z" = 0),
@@ -212,14 +210,14 @@
 	. = ..()
 	create_reagents(100)
 
-/obj/structure/bed/chair/janicart/examine(mob/user, distance)
+/obj/structure/janicart/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 1)
 		to_chat(user, "[html_icon(src)] This [callme] contains [reagents.total_volume] unit\s of water!")
 		if(mybag)
 			to_chat(user, "\A [mybag] is hanging on the [callme].")
 
-/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
+/obj/structure/janicart/attackby(obj/item/I, mob/user)
 
 	if(istype(I, /obj/item/mop))
 		if(reagents.total_volume > 1)
@@ -243,27 +241,27 @@
 
 	. = ..()
 
-/obj/structure/bed/chair/janicart/attack_hand(mob/user)
+/obj/structure/janicart/attack_hand(mob/user)
 	if(!mybag || !user.check_dexterity(DEXTERITY_HOLD_ITEM, TRUE))
 		return ..()
 	user.put_in_hands(mybag)
 	mybag = null
 	return TRUE
 
-/obj/structure/bed/chair/janicart/handle_buckled_relaymove(var/datum/movement_handler/mh, var/mob/mob, var/direction, var/mover)
+/obj/structure/janicart/handle_buckled_relaymove(var/datum/movement_handler/mh, var/mob/mob, var/direction, var/mover)
 	if(isspaceturf(loc))
 		return
 	. = MOVEMENT_HANDLED
 	DoMove(mob.AdjustMovementDirection(direction, mover), mob)
 
-/obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
+/obj/structure/janicart/relaymove(mob/user, direction)
 	if(user.incapacitated(INCAPACITATION_DISRUPTED))
 		unbuckle_mob()
 	user.glide_size = glide_size
 	step(src, direction)
 	set_dir(direction)
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/janicart/bullet_act(var/obj/item/projectile/Proj)
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)

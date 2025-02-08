@@ -187,11 +187,11 @@
 	result_type            = /obj/structure/bookcase/cart
 
 /decl/stack_recipe/planks/furniture/chair
-	result_type            = /obj/structure/bed/chair/wood
+	result_type            = /obj/structure/chair/wood
 	category               = "seating"
 
 /decl/stack_recipe/planks/furniture/chair/fancy
-	result_type            = /obj/structure/bed/chair/wood/wings
+	result_type            = /obj/structure/chair/wood/wings
 
 /decl/stack_recipe/planks/furniture/chest
 	result_type            = /obj/structure/closet/crate/chest

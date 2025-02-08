@@ -186,7 +186,7 @@
 	holographic = TRUE
 	material = /decl/material/solid/metal/aluminium/holographic
 
-/obj/structure/bed/chair/holochair
+/obj/structure/chair/holochair
 	tool_interaction_flags = 0
 	holographic = TRUE
 	material = /decl/material/solid/metal/aluminium/holographic
